@@ -1,6 +1,6 @@
 <template>
  <div>
-  <CustomTitle>About Page</CustomTitle>
+  <LazyCustomTitle>About Page</LazyCustomTitle>
   <DashboardHome/>
  </div>
 </template>
