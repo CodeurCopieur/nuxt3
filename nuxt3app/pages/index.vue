@@ -18,5 +18,6 @@
       <Style type="text/css" children="body { background-color: green; }" />    
     </Head>
     <h1>Nouvelle HP</h1>
+    <Todo/>
   </div>
 </template>
