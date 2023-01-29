@@ -15,5 +15,7 @@ export default defineNuxtConfig({
       baseUrl: "https://fakestoreapi.com",
       appSecret: "",
     }
-  }
+  },
+  modules: ['@nuxtjs/tailwindcss']
 })
+

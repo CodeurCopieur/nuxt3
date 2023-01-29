@@ -1,15 +1,19 @@
 <template>
-  <div>
+  <div class="wrap-body">
     <Header/>
-    <main>
+    <main class="container mx-auto p-4">
       <slot />
     </main>
-    <footer>
-      <ul>
-        <NuxtLink to="/">Home</NuxtLink>
-        <NuxtLink to="/about">About</NuxtLink>
-        <NuxtLink to="/products">Products</NuxtLink>
-      </ul>
-    </footer>
+    <Footer/>
   </div>
 </template>
+<style>
+ .wrap-body {
+    display: flex;
+    flex-direction: column;
+ }
+
+ main {
+  flex-grow: 1;
+ }
+</style>
