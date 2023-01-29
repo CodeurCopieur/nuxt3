@@ -2,6 +2,10 @@
 
 ## Setup
 
+* https://nuxt.com/modules/
+
+* https://nuxt.com/modules/tailwindcss
+
 Make sure to install the dependencies:
 
 ```bash
