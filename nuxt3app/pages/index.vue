@@ -11,12 +11,12 @@
 </script>
 <template>
   <div>
-    <Head>
+    <!-- <Head>
       <Title>{{ title }}</Title>      
       <Meta name="description" :content="title" />
       <Meta property="og:title" content="C'est un titre og" />
       <Style type="text/css" children="body { background-color: green; }" />    
-    </Head>
+    </Head> -->
     <h1>Nouvelle HP</h1>
     <Todo/>
   </div>
