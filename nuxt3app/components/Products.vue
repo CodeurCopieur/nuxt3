@@ -1,9 +1,9 @@
 <template>
   <div>
-    <ul v-if="products">
+    <ul v-if="products" class="grid grid-cols-4 gap-5">
     <li v-for="(item, i) in products" :key="i">
       <span>{{ item?.title }}</span><br>
-      <NuxtLink :to="`products/${item.id}`">Product {{item.id }}</NuxtLink>
+      <NuxtLink :to="`products/${item.id}`" class="btn">Product {{item.id }}</NuxtLink>
       </li>
   </ul>
   </div>
