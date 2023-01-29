@@ -1,9 +1,11 @@
 <template>
- <div>
     <header>
-      <NuxtLink to="/">Home</NuxtLink>
-      <NuxtLink to="/about">About</NuxtLink>
-      <NuxtLink to="/products">Products</NuxtLink>
+      <NuxtLink to="/">CodeurCopieur</NuxtLink>
+      <ul>
+        <li><NuxtLink to="/">Home</NuxtLink></li>
+        <li><NuxtLink to="/about">About</NuxtLink></li>
+        <li><NuxtLink to="/products">Products</NuxtLink></li>
+      </ul>
     </header>
-  </div>
+
 </template>
