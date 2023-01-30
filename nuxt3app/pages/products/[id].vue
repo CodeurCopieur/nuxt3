@@ -1,8 +1,6 @@
 <template>
-  <section class="container mx-auto p-4">
-    <p>Product details for {{ product.id }}</p>
-    <p>{{ product.title }}</p>
-    <p>{{ product.price }} $</p>
+  <section>
+    <ProductDetails :product="product" />
   </section>
 </template>
 
