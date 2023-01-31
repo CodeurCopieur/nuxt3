@@ -7,7 +7,10 @@ export default defineNuxtConfig({
       title: 'My App',      
       meta: [             
       { name: 'description', content: 'Ceci est la démo de l\'application Nuxt 3' } ,
-      { property: "og:title",  content:'C\'est un titre og'}     ],
+      { property: "og:title",  content:'C\'est un titre og'}],
+      link: [
+        {rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons'}
+      ]
     }  
   },
   runtimeConfig: {

@@ -17,7 +17,7 @@
       <Meta property="og:title" content="C'est un titre og" />
       <Style type="text/css" children="body { background-color: green; }" />    
     </Head> -->
-    <h1>Nouvelle HP</h1>
+    <h1>HomePage</h1>
     <Todo/>
   </div>
 </template>

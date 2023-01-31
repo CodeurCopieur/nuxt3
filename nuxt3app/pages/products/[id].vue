@@ -1,5 +1,9 @@
 <template>
   <section>
+    <head>
+      <Title>Product : {{ product.title }} | Nuxt 3 Demo</Title>
+      <Meta name="description" :content="product.description" />
+    </head>
     <ProductDetails :product="product" />
   </section>
 </template>
