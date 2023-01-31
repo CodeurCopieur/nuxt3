@@ -11,4 +11,8 @@
    const uri = `${runTimeConfig.public.baseUrl}/products/`+id;
 
    const { data:product } = await useFetch(uri, {key: id});
+
+   if (!product.value) {
+    throw createError({ statusCode: 404, statusMessage: 'Produit non trouvé !', fatal: true})
+   }
 </script>
