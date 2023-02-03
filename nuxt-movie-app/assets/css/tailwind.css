@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* app transitions */
+.page-enter-active,.page-leave-active, .loading  {  transition: all 0.4s;}
+.page-enter-from,.page-leave-to {  opacity: 0;}
+
+.loading {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes circle-loading {
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+
+.loading span {
+  display: block;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: #4ade80;
+  animation: circle-loading 1200ms ease infinite;
+}
