@@ -1,9 +1,9 @@
 <script setup>
-    const runTimeConfig = useRuntimeConfig()
+    const runTimeConfig = useRuntimeConfig();
 </script>
 
 <template>
-  <div id="app">
+  <div id="app" class="min-h-screen">
     <NuxtLayout name="default">
       <nuxtPage />
     </NuxtLayout>
