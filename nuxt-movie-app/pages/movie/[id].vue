@@ -1,7 +1,7 @@
 <script setup>
-  
+  const {id} = useRoute().params;
 </script>
 
 <template>
-  <div>Details movie</div>
+    <MovieDetails :id="id" />
 </template>
