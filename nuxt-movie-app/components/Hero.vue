@@ -1,56 +1,46 @@
 <script setup>
 const { movies } = defineProps(['movies']);
-console.log(movies)
+
 </script>
 <template>
 <div class="bg-white py-6">
-    <div class="xl:container mx-auto px-3 sm:px-4 xl:px-2">
+    <!-- <div class="xl:container mx-auto px-3 sm:px-4 xl:px-2"> -->
+    <div class="px-3 sm:px-4 xl:px-2">
         <!-- big grid 1 -->
         <div class="flex flex-row flex-wrap">
             <!--Start left cover-->
             <div class="flex-shrink max-w-full w-full lg:w-1/2 pb-1 lg:pb-0 lg:pr-1">
-                <div class="relative hover-img max-h-98 overflow-hidden" 
-                    v-for="(movie, i) in movies.results" 
-                      :key="i">
-                    <template v-if="i === 0">
-                        <a :href="`movies/${movie.id}`">
-                            <img class="max-w-full w-full mx-auto h-auto" src="https://tailnews.tailwindtemplate.net/src/img/dummy/img1.jpg" alt="Image description">
-                        </a>
-                        <div class="absolute px-5 pt-8 pb-5 bottom-0 w-full bg-gradient-cover">
-                            <a :href="`movies/${movie.id}`">
-                                <h2 class="text-3xl font-bold capitalize text-white mb-3">Amazon Shoppers Are Ditching Designer Belts for This Best-Selling</h2>
-                            </a>
-                            <p class="text-gray-100 hidden sm:inline-block">This is a wider card with supporting text below as a natural lead-in to additional content. This very helpfull for generate default content..</p>
-                            <div class="pt-2">
-                                <div class="text-gray-100">
-                                    <div class="inline-block h-3 border-l-2 border-red-600 mr-2"></div>Europe
-                                </div>
-                            </div>
-                        </div>
-                    </template>
+                <div class="relative hover-img max-h-98 overflow-hidden">
+                        <HeroCard 
+                            :title="movies.results[0].original_title" 
+                            :id="movies.results[0].id"
+                            :bp="movies.results[0].backdrop_path"
+                            :overview="movies.results[0].overview" />
                 </div>
             </div>
             <!--Start box news-->
             <div class="flex-shrink max-w-full w-full lg:w-1/2">
                 <div class="box-one flex flex-row flex-wrap">
-                    <article class="flex-shrink max-w-full w-full sm:w-1/2">
-                        <div class="relative hover-img max-h-48 overflow-hidden">
-                            <a href="#">
-                                <img class="max-w-full w-full mx-auto h-auto" src="https://tailnews.tailwindtemplate.net/src/img/dummy/img2.jpg" alt="Image description">
-                            </a>
-                            <div class="absolute px-4 pt-7 pb-4 bottom-0 w-full bg-gradient-cover">
-                                <a href="#">
-                                    <h2 class="text-lg font-bold capitalize leading-tight text-white mb-1">News magazines are becoming obsolete, replaced by gadgets</h2>
+                    <template  v-for="(movie, i) in movies.results" :key="i">
+                        <article  v-if="i > 0 && i < 5"  class="flex-shrink max-w-full w-full sm:w-1/2">
+                            <div class="relative hover-img max-h-48 overflow-hidden">
+                                <a :href="`movie/${movie.id}`">
+                                    <img class="max-w-full w-full mx-auto h-auto" src="https://tailnews.tailwindtemplate.net/src/img/dummy/img2.jpg" alt="Image description">
                                 </a>
-                                <div class="pt-1">
-                                    <div class="text-gray-100">
-                                        <div class="inline-block h-3 border-l-2 border-red-600 mr-2"></div>Techno
+                                <div class="absolute px-4 pt-7 pb-4 bottom-0 w-full bg-gradient-cover">
+                                    <a :href="`movie/${movie.id}`">
+                                        <h2 class="text-lg font-bold capitalize leading-tight text-white mb-1">{{movie.original_title}}</h2>
+                                    </a>
+                                    <div class="pt-1">
+                                        <div class="text-gray-100">
+                                            <div class="inline-block h-3 border-l-2 border-red-600 mr-2"></div>Techno
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </article>
-                    <article class="flex-shrink max-w-full w-full sm:w-1/2">
+                        </article>
+                    </template>
+                    <!-- <article class="flex-shrink max-w-full w-full sm:w-1/2">
                         <div class="relative hover-img max-h-48 overflow-hidden">
                             <a href="#">
                                 <img class="max-w-full w-full mx-auto h-auto" src="https://tailnews.tailwindtemplate.net/src/img/dummy/img3.jpg" alt="Image description">
@@ -100,7 +90,7 @@ console.log(movies)
                                 </div>
                             </div>
                         </div>
-                    </article>
+                    </article> -->
                 </div>
             </div>
         </div>
@@ -109,8 +99,10 @@ console.log(movies)
 
 </template>
 
-<style setup>
-  .bg-gradient-cover {
+<style>
+
+
+.bg-gradient-cover {
 	background-color: transparent;
     background-image: linear-gradient(transparent,rgba(0,0,0,0.92));
     background-position-y: -1px;
