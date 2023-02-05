@@ -7,9 +7,9 @@
         <NuxtLink 
           v-for="i in 20"
           :key="i"
-          to="/genres/test"
+          to="/genres/1234"
           class="block py-2 px-4 bg-gray-300 rounded hover:bg-gray-400"
-          >#GenreName</NuxtLink>
+          >#GenreName{{ i }}</NuxtLink>
       </div>
     </section>
   </main>
