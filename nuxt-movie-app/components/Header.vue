@@ -4,7 +4,7 @@
       <NuxtLink to="/" class="font-bold">CodeurCopieur</NuxtLink>
       <ul class="flex gap-4">
         <li><NuxtLink to="/">Home</NuxtLink></li>
-        <li><NuxtLink to="/movies">Movies</NuxtLink></li>
+        <li><NuxtLink to="/movie">Movies</NuxtLink></li>
         <li><NuxtLink to="/tv">TV Series</NuxtLink></li>
         <li><NuxtLink to="/search">Search</NuxtLink></li>
       </ul>
