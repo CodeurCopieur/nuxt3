@@ -15,7 +15,7 @@
       <span>text2</span>
     </div>
     <!-- Post Image -->
-    <div class="w-full h-[250px] h-[400px] relative shadow-xl rounded overflow-hidden mb-10">
+    <div class="w-full h-[250px] sm:h-[400px] relative shadow-xl rounded overflow-hidden mb-10">
       <img 
         src="https://image.tmdb.org/t/p/original//xDMIl84Qo5Tsu62c9DGWhmPI67A.jpg" 
         alt=""
