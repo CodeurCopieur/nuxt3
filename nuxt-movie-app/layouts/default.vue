@@ -1,9 +1,9 @@
 <template>
  <div class="min-h-screen">
   <Header/>
-  <main>
+  <div>
     <slot />
-  </main>
+  </div>
   <Footer/>
  </div>
 </template>
