@@ -13,7 +13,7 @@ export default () => {
     // Get Details: https://api.themoviedb.org/3/movie/{movie_id}?api_key={CURRENCY_API_KEY}
 
     // Movie Discover : https://api.themoviedb.org/3/discover/movie?api_key={CURRENCY_API_KEY}&sort_by=popularity.desc&page=${page}
-    const gets = async(get, page) => {
+    const req = async(get, page) => {
       return useFetch(`${baseUrl}${get}?api_key=${apiKey}${page}`)
     }
 
@@ -23,25 +23,25 @@ export default () => {
       if (page) {
         query +=`${page}`;
       }
-       return gets(`movie/${get}`, query)
+       return req(`movie/${get}`, query);
     }
 
     const getDetails = async(getId) => {
       if (getId) {
-        return gets(`movie/${getId}`)
+        return req(`movie/${getId}`);
       }
     }
 
     // Get All Genres: https://api.themoviedb.org/3/genre/movie/list?api_key={CURRENCY_API_KEY}
 
-    const getGenres = async() => gets(`genre/movie/list`)
+    const getGenres = async() => req(`genre/movie/list`);
 
       return {
-        gets,
+        req,
         getMovies,
         getDetails,
         getGenres
-      }
+      };
 
   // Series
 
