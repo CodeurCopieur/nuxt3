@@ -3,52 +3,46 @@
     const resMovies = ref(movies.data.results);
 </script>
 <template>
-
-
-<div class="bg-white py-6">
-    <!-- <div class="xl:container mx-auto px-3 sm:px-4 xl:px-2"> -->
-    <div class="px-3 sm:px-4 xl:px-2">
-        <!-- big grid 1 -->
-        <div class="flex flex-row flex-wrap">
-            <!--Start left cover-->
-            <div class="flex-shrink max-w-full w-full lg:w-1/2 pb-1 lg:pb-0 lg:pr-1">
-                <div class="relative hover-img max-h-98 overflow-hidden">
-                        <HeroCard 
-                            :title="resMovies[0].original_title" 
-                            :id="resMovies[0].id"
-                            :bp="resMovies[0].backdrop_path"
-                            :overview="resMovies[0].overview" />
-                </div>
+<div class="sm:pr-2 pr-2 md:pr-0">
+    <!-- big grid 1 -->
+    <div class="flex flex-row flex-wrap">
+        <!--Start left cover-->
+        <div class="flex-shrink max-w-full w-full lg:w-1/2 pb-1 lg:pb-0 lg:pr-1">
+            <div class="relative hover-img max-h-98 overflow-hidden">
+                    <HeroCard 
+                        :title="resMovies[0].original_title" 
+                        :id="resMovies[0].id"
+                        :bp="resMovies[0].backdrop_path"
+                        :overview="resMovies[0].overview" />
             </div>
-            <!--Start box news-->
-            <div class="flex-shrink max-w-full w-full lg:w-1/2">
-                <div class="box-one flex flex-row flex-wrap">
-                    <template  v-for="(movie, i) in resMovies" :key="i">
-                        <article  v-if="i > 0 && i < 5"  class="flex-shrink max-w-full w-full sm:w-1/2">
-                            <div class="relative hover-img max-h-48 overflow-hidden">
+        </div>
+        <!--Start box news-->
+        <div class="flex-shrink max-w-full w-full lg:w-1/2">
+            <div class="box-one flex flex-row flex-wrap">
+                <template  v-for="(movie, i) in resMovies">
+                    <article  :key="i" v-if="i > 0 && i < 5"  class="flex-shrink max-w-full w-full sm:w-1/2">
+                        <div class="relative hover-img max-h-48 overflow-hidden">
+                            <a :href="`movie/${movie.id}`">
+                                <img class="max-w-full w-full mx-auto h-auto" src="https://tailnews.tailwindtemplate.net/src/img/dummy/img2.jpg" alt="Image description">
+                            </a>
+                            <div class="absolute px-4 pt-7 pb-4 bottom-0 w-full bg-gradient-cover">
                                 <a :href="`movie/${movie.id}`">
-                                    <img class="max-w-full w-full mx-auto h-auto" src="https://tailnews.tailwindtemplate.net/src/img/dummy/img2.jpg" alt="Image description">
+                                    <h2 class="text-lg font-bold capitalize leading-tight text-white mb-1">{{movie.original_title}}</h2>
                                 </a>
-                                <div class="absolute px-4 pt-7 pb-4 bottom-0 w-full bg-gradient-cover">
-                                    <a :href="`movie/${movie.id}`">
-                                        <h2 class="text-lg font-bold capitalize leading-tight text-white mb-1">{{movie.original_title}}</h2>
-                                    </a>
-                                    <div class="pt-1">
-                                        <div class="text-gray-100">
-                                            <div class="inline-block h-3 border-l-2 border-red-600 mr-2"></div>Techno
-                                        </div>
+                                <div class="pt-1">
+                                    <div class="text-gray-100">
+                                        <div class="inline-block h-3 border-l-2 border-red-600 mr-2"></div>Techno
                                     </div>
                                 </div>
                             </div>
-                        </article>
-                    </template>
+                        </div>
+                    </article>
+                </template>
 
-                </div>
             </div>
         </div>
     </div>
 </div>
-
 </template>
 
 <style>
@@ -57,7 +51,6 @@
 .bg-gradient-cover {
 	background-color: transparent;
     background-image: linear-gradient(transparent,rgba(0,0,0,0.92));
-    background-position-y: -1px;
 }
 .max-h-98 {
     max-height: 24.3rem;
