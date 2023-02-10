@@ -14,7 +14,11 @@ export default () => {
 
     // Movie Discover : https://api.themoviedb.org/3/discover/movie?api_key={CURRENCY_API_KEY}&sort_by=popularity.desc&page=${page}
     const req = async(get, page) => {
-      return useFetch(`${baseUrl}${get}?api_key=${apiKey}${page}`)
+      if(page) {
+        return useFetch(`${baseUrl}${get}?api_key=${apiKey}${page}`)
+      } else {
+        return useFetch(`${baseUrl}${get}?api_key=${apiKey}`)
+      }
     }
 
     const getMovies = async(get, page=1) => {
@@ -28,7 +32,7 @@ export default () => {
 
     const getDetails = async(getId) => {
       if (getId) {
-        return req(`movie/${getId}`);
+        return req(`movie/${getId}`, null);
       }
     }
 
