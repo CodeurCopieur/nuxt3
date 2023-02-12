@@ -1,29 +1,71 @@
 <script setup>
     const { movies } = defineProps(['movies']);
     const resMovies = ref(movies.data.results);
+
+    const thumbnailSwiperParams = {
+      spaceBetween: 10,
+      centeredSlides: true,
+      loop: true,                         
+        autoplay: {                         
+            delay: 8000,  
+        },
+      slidesPerView: 'auto',
+      touchRatio: 0.2,
+      slideToClickedSlide: true,
+      slidesPerView: 4,
+      breakpoints: {
+        480: {
+            slidesPerView: 2,
+            spaceBetween: 24,
+            resistanceRatio: 0.85
+        },
+        768: {
+            slidesPerView: 3,
+            spaceBetween: 28,
+            resistanceRatio: 0.85
+        },
+        980: {
+            slidesPerView: 4,
+            spaceBetween: 28,
+            resistanceRatio: 0.85
+        },
+        1280: {
+            slidesPerView: 5,
+            spaceBetween: 32,
+            resistanceRatio : 0
+        }
+    }
+    };
 </script>
 <template>
-<div class="sm:pr-2 pr-2 md:pr-0">
+<div class="px-2">
+    <!-- disableOnInteraction: true} -->
+      <swiper 
+      class="mySwiper cursor-grab flex items-center"
+      :breakpoints="thumbnailSwiperParams.breakpoints"
+      :slides-per-view="thumbnailSwiperParams.slidesPerView"
+      :space-between="thumbnailSwiperParams.spaceBetween"
+      :modules="[SwiperAutoplay]" 
+      :loop="thumbnailSwiperParams.loop" 
+      :autoplay="thumbnailSwiperParams.autoplay.delay"
+      ref="thumbnailSwiperParams" 
+>
+        <SwiperSlide v-for="(movie, i) in resMovies" :key="i" 
+            class="relative w-1/5 ">
+            <div></div>
+            <img :src="`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`" alt="">
+            <h2 class="text-lg font-bold capitalize leading-tight text-white mb-1">{{movie.original_title}}</h2>
+        </SwiperSlide>
+      </swiper>
     <!-- big grid 1 -->
     <div class="flex flex-row flex-wrap">
-        <!--Start left cover-->
-        <div class="flex-shrink max-w-full w-full lg:w-1/2 pb-1 lg:pb-0 lg:pr-1">
-            <div class="relative hover-img max-h-98 overflow-hidden">
-                    <HeroCard 
-                        :title="resMovies[0].original_title" 
-                        :id="resMovies[0].id"
-                        :bp="resMovies[0].backdrop_path"
-                        :overview="resMovies[0].overview" />
-            </div>
-        </div>
-        <!--Start box news-->
-        <div class="flex-shrink max-w-full w-full lg:w-1/2">
-            <div class="box-one flex flex-row flex-wrap">
-                <template  v-for="(movie, i) in resMovies">
-                    <article  :key="i" v-if="i > 0 && i < 5"  class="flex-shrink max-w-full w-full sm:w-1/2">
+        <div class="flex-shrink max-w-full w-full">
+            <div class="mx-10  grid grid-cols-1 gap-y-10 gap-x-8 sm:grid-cols-2 lg:grid-cols-3 xl-grid-cols-4">
+                <template  v-for="(movie, i) in resMovies" :key="i">
+                    <article  class="flex-shrink">
                         <div class="relative hover-img max-h-48 overflow-hidden">
                             <a :href="`movie/${movie.id}`">
-                                <img class="max-w-full w-full mx-auto h-auto" src="https://tailnews.tailwindtemplate.net/src/img/dummy/img2.jpg" alt="Image description">
+                                <img class="max-w-full w-full mx-auto h-auto" :src="`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`" alt="Image description">
                             </a>
                             <div class="absolute px-4 pt-7 pb-4 bottom-0 w-full bg-gradient-cover">
                                 <a :href="`movie/${movie.id}`">
