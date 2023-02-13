@@ -4,15 +4,13 @@
 
     const thumbnailSwiperParams = {
       spaceBetween: 10,
-      centeredSlides: true,
       loop: true,                         
         autoplay: {                         
             delay: 8000,  
         },
-      slidesPerView: 'auto',
       touchRatio: 0.2,
-      slideToClickedSlide: true,
       slidesPerView: 4,
+      pagination:{ clickable: true, dynamicBullets: true },
       breakpoints: {
         480: {
             slidesPerView: 2,
@@ -36,28 +34,74 @@
         }
     }
     };
+    
+    const gallerySwiperParams = {
+      spaceBetween: 10,
+      slideToClickedSlide: true,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      loop: true,                         
+      autoplay: {                         
+        delay: 8000,  
+      }
+    };
+
+    const showData = (date) => {
+        const str = date;
+        const res = new Date(str);
+        return res.toLocaleDateString()
+    };
 </script>
 <template>
-<div class="px-2">
-    <!-- disableOnInteraction: true} -->
-      <swiper 
+<div class="component-app__wrap-sliderHero relative">
+    <swiper ref="gallerySwiperParams" 
+    grab-cursor lazy 
+    :loop="gallerySwiperParams.loop"
+    :slide-to-clicked-slide="gallerySwiperParams.slideToClickedSlide" class="h-max w-full component-app__wrap-slider">
+        <SwiperSlide v-for="(movie, i) in resMovies" :key="i" class="component-app__wrap-slideHero relative">
+
+            <div class="absolute z-10">
+                <div class="w-full xl:w-6/12 md:w-8/12 xl:pl-40 p-0">
+                    <div class="px-8">
+                        <span>{{ showData( `${movie.release_date}`) }}</span>
+                        <h3>{{ movie.original_title}}</h3>
+                        <p>{{ movie.overview }}</p>
+                        <a :href="`movie/${movie.id}`">Voir</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="component-app__aspect-ratio"></div>
+            <div class="component-app__linear-black"></div>
+            <picture>
+                <img :src="`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`" class="swiper-lazy absolute top-0 left-0" :alt="movie.original_title">
+            </picture>
+            
+        </SwiperSlide>
+    </swiper>
+</div>
+      <!-- <swiper 
       class="mySwiper cursor-grab flex items-center"
       :breakpoints="thumbnailSwiperParams.breakpoints"
       :slides-per-view="thumbnailSwiperParams.slidesPerView"
       :space-between="thumbnailSwiperParams.spaceBetween"
-      :modules="[SwiperAutoplay]" 
       :loop="thumbnailSwiperParams.loop" 
-      :autoplay="thumbnailSwiperParams.autoplay.delay"
+      lazy
+      grab-cursor
+      watch-slides-progress
       ref="thumbnailSwiperParams" 
 >
-        <SwiperSlide v-for="(movie, i) in resMovies" :key="i" 
+        <SwiperSlide 
+            v-for="(movie, i) in resMovies" :key="i"
             class="relative w-1/5 ">
             <div></div>
-            <img :src="`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`" alt="">
+            <img :src="`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`" class="swiper-lazy" :alt="movie.original_title">
             <h2 class="text-lg font-bold capitalize leading-tight text-white mb-1">{{movie.original_title}}</h2>
         </SwiperSlide>
       </swiper>
-    <!-- big grid 1 -->
+
     <div class="flex flex-row flex-wrap">
         <div class="flex-shrink max-w-full w-full">
             <div class="mx-10  grid grid-cols-1 gap-y-10 gap-x-8 sm:grid-cols-2 lg:grid-cols-3 xl-grid-cols-4">
@@ -83,8 +127,8 @@
 
             </div>
         </div>
-    </div>
-</div>
+    </div> -->
+
 </template>
 
 <style>
@@ -116,5 +160,11 @@
 	padding-top: 0.125rem;
 	padding-bottom: 0.125rem;
 	padding-left: 0.125rem;
+}
+.swiper-slide-visible.swiper-slide-active {
+    opacity: 1;
+}
+.swiper-slide-visible {
+    opacity: .5;
 }
 </style>
