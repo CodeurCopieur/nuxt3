@@ -29,3 +29,66 @@
   border-top-color: #4ade80;
   animation: circle-loading 1200ms ease infinite;
 }
+
+.component-app__wrap-sliderHero::before {
+  content: "";
+  width: 100%;
+  height: 30%;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  z-index: 2;
+  pointer-events: none;
+  background-image: linear-gradient(to top, #111827, rgba(0, 0, 0, 0));
+}
+
+.component-app__wrap-slideHero {
+  position: relative;
+  height: 0;
+}
+
+.component-app__wrap-sliderHero::after {
+  content: "";
+  z-index: 2;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-image: linear-gradient(to right, #111827, rgba(0, 0, 0, 0));
+}
+
+.component-app__wrap-slideHero img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* object-position: center top; */
+}
+
+@media screen and (min-width: 1200px){
+  .component-app__aspect-ratio {
+  padding-top: 45%;
+}
+}
+
+  @media (min-width: 900px) and (max-width: 1200px){
+    .component-app__aspect-ratio {
+      padding-top: 60%;
+    }
+  }
+
+  @media (min-width: 600px) and (max-width: 900px) {
+    .component-app__aspect-ratio {
+      padding-top: 80%;
+    }
+  }
+
+  @media (min-width: 0px) and (max-width: 600px) {
+    .component-app__aspect-ratio {
+      padding-top: 130%;
+    }
+  }
