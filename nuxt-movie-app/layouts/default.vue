@@ -1,11 +1,9 @@
 <template>
- <div class="flex bg-gray-900 text-white min-h-screen">
+ <div class="flex bg-gray-900 text-white">
   <Header/>
-  <div class="w-full md:mx-20 my-8">
-    <div class="2xl:container mx-auto">
+  <main class="w-full min-h-screen">
       <slot />
-    </div>
-  </div>
+  </main>
   <!-- <Footer/> -->
  </div>
 </template>
