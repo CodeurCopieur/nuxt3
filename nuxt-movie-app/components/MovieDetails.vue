@@ -14,8 +14,8 @@
     </div>
     <!-- Post Meta -->
     <div class="text-center mb-10">
-      <span class="mr-3">text1</span>
-      <span>text2</span>
+      <span class="mr-3">{{ Math.round(resMovie.vote_average) }}</span>
+      <span>{{ useMoviesApi().showData( `${resMovie.release_date}`) }}</span>
     </div>
     <!-- Post Image -->
     <div class="blog__image w-full h-[250px] sm:h-[500px] relative shadow-xl rounded overflow-hidden mb-10">
