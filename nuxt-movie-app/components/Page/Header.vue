@@ -12,6 +12,6 @@
 
 <style>
   .hero {
-    @apply py-16 bg-gray-100;
+    @apply py-16 bg-[#111827];
   } 
 </style>
