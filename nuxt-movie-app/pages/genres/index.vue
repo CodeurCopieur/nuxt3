@@ -12,7 +12,7 @@
         <NuxtLink 
           v-for="genre in genres.value.genres"
           :key="genre.id"
-          :to="{query: {id: genre.id}, path:`/genres/${genre.name.toLowerCase()}`}"
+          :to="{query: {name: genre.name.toLowerCase()}, path:`/genres/${genre.id}`}"
           class="block py-2 px-4 bg-gray-300 rounded hover:bg-gray-400"
           >#{{ genre.name }}</NuxtLink>
       </div>
