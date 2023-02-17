@@ -5,9 +5,9 @@
     const thumbnailSwiperParams = {
       spaceBetween: 10,
       loop: true,                         
-        autoplay: {                         
-            delay: 8000,  
-        },
+      autoplay: {                         
+        delay: 8000,  
+      },
       touchRatio: 0.2,
       slidesPerView: 4,
       pagination:{ clickable: true, dynamicBullets: true },
@@ -48,11 +48,6 @@
       }
     };
 
-    const showData = (date) => {
-        const str = date;
-        const res = new Date(str);
-        return res.toLocaleDateString()
-    };
 </script>
 <template>
 <div class="component-app__wrap-sliderHero relative">
@@ -62,13 +57,19 @@
     :slide-to-clicked-slide="gallerySwiperParams.slideToClickedSlide" class="h-max w-full component-app__wrap-slider">
         <SwiperSlide v-for="(movie, i) in resMovies" :key="i" class="component-app__wrap-slideHero relative">
 
-            <div class="absolute z-10">
-                <div class="w-full xl:w-6/12 md:w-8/12 xl:pl-40 p-0">
+            <div class="absolute z-10 h-full">
+                <div class="w-full xl:w-6/12 md:w-8/12 xl:pl-40 p-0 h-full flex items-center">
                     <div class="px-8">
-                        <span>{{ showData( `${movie.release_date}`) }}</span>
-                        <h3>{{ movie.original_title}}</h3>
-                        <p>{{ movie.overview }}</p>
-                        <a :href="`movie/${movie.id}`">Voir</a>
+                        
+                        <h3 class="text-xs text-lg text-4xl">{{ movie.original_title}}</h3>
+                        <div class="mt-8">
+                            <span>{{ movie.vote_average }}</span>
+                        </div>
+                        
+                        <p class="mt-8 text-xs text-lg">{{ movie.overview }}</p>
+                        <a :href="`movie/${movie.id}`" class="inline-block mt-8 py-2 px-6 bg-[#111827] rounded border-slate-300">
+                            <span>Voir</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -76,7 +77,7 @@
             <div class="component-app__aspect-ratio"></div>
             <div class="component-app__linear-black"></div>
             <picture>
-                <img :src="`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`" class="swiper-lazy absolute top-0 left-0" :alt="movie.original_title">
+                <img :src="`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`" class="swiper-lazy" :alt="movie.original_title">
             </picture>
             
         </SwiperSlide>
