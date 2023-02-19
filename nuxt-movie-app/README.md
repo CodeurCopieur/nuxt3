@@ -1,6 +1,6 @@
 # Nuxt 3 Minimal Starter
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Nous allons construire une Application Nuxt 3. Nous utiliserons l'API themoviedb pour récupérer les données et les afficher sur notre Application Nuxt 3. Pour la conception, nous utiliserons TailwindCSS, et à la fin, nous le déploierons dans Vercel.
 
 ## Setup
 
@@ -13,8 +13,6 @@ yarn install
 # npm
 npm install
 
-# pnpm
-pnpm install
 ```
 
 ## Development Server
@@ -32,11 +30,3 @@ Build the application for production:
 ```bash
 npm run build
 ```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
