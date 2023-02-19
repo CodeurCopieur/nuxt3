@@ -91,7 +91,49 @@
   opacity: 1;
   bottom: 0px;
   padding: 10px;
+  background-image: linear-gradient(to top, rgb(0, 0, 0), rgba(255, 255, 255, 0));
   transition: all 0.3s ease 0s;
+}
+
+.precent-bar {
+  height: 8px;
+  width: 100%;
+  border-radius: 6px;
+  background-color: rgba(0, 0, 0, .1);
+}
+
+.precent-bar .precent-per {
+  position: relative;
+  display: block;
+  height: 100%;
+  border-radius: 6px;
+  border: 1px solid #fff;
+  background: #fff;
+}
+
+.precent-per .percent-tooltip {
+  position: absolute;
+  right: -25px;
+  top: -40px;
+  font-size: 10px;
+  font-weight: 800;
+  color: #fff;
+  padding: 4px 12px;
+  z-index: 100;
+  border: 1px solid #fff;
+  background: #111827;
+}
+
+.precent-per .percent-tooltip::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  width: 10px;
+  height: 10px;
+  z-index: 10;
+  background-color: #fff;
+  transform: translateX(-50%) rotate(45deg);
 }
 
 @media screen and (min-width: 1200px){
@@ -116,7 +158,6 @@
   .component-app__wrap-movieCard:hover .component-app__wrap-movieCard-info {
     opacity: 1;
     bottom: 0px;
-    background-image: linear-gradient(to top, rgb(0, 0, 0), rgba(0, 0, 0, 0));
   }
 }
 
