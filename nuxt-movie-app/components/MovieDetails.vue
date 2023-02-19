@@ -5,7 +5,7 @@
   // console.log(resMovie)
 </script>
 <template>
-   <section class="container mx-auto py-10 sm:py-16">
+   <section class="container max-w-7xl mx-auto py-10 sm:py-16">
     <!-- Post Title -->
     <div class="text-center mb-5">
       <h1 class="text-3xl sm:text-5xl font-bold">
