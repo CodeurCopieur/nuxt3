@@ -7,7 +7,7 @@
 <template>
   <div>
     <PageHeader title="Genre Index"></PageHeader>
-    <section class="py-10 container mx-auto">
+    <section class="py-10 container max-w-7xl mx-auto">
       <div class="flex flex-wrap gap-5">
         <NuxtLink 
         class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-pink-500 relative inline-block block py-2 px-4 bg-gray-300 rounded hover:bg-gray-400"
