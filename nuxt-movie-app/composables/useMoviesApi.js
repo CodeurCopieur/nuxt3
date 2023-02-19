@@ -3,10 +3,21 @@ export default () => {
   const baseUrl = config.public.baseUrl;
   const apiKey = config.public.currencyKey;
 
-  const showData = (date) => {
+  const showDate = (date) => {
     const str = date;
     const res = new Date(str);
     return res.toLocaleDateString()
+  };
+  const showYear = (date) => {
+    const str = date;
+    const res = new Date(str);
+    return res.getFullYear()
+  };
+
+  const percent = (note)=> {
+    var result = note/10*100;
+
+    return Math.ceil(result)
   };
 
   //Movies 
@@ -49,24 +60,32 @@ export default () => {
     // Get Movies By Genres: https://api.themoviedb.org/3/discover/movie?api_key={CURRENCY_API_KEY}&sort_by=popularity.desc&page=1&with_genres={CURRENCY_GENRE}
 
     const reqDiscover = async(get, page, genre) => {
-      if(page) {
-        return useFetch(`${baseUrl}${get}?api_key=${apiKey}${page}&with_genres=${genre}`)
+      if(page && genre) {
+        return useFetch(`${baseUrl}${get}?api_key=${apiKey}&sort_by=popularity.desc${page}${genre}`)
+      }else if(genre === null) {
+        return useFetch(`${baseUrl}${get}?api_key=${apiKey}&sort_by=popularity.desc${page}`)
       }
     }
 
     const getMoviesD = async(get, page=1, genre) => {
       let query = `&page=`;
+      let query2 = `&with_genres=`;
 
       if (page) {
         query +=`${page}`;
       }
-       return reqDiscover(`${get}`, query, genre);
+      if (genre !== null) {
+        query2 += `${genre}`;
+      }
+       return reqDiscover(`${get}`, query, query2);
     }
 
     // const getMoviesByGenres = async() => getMoviesD(`discover/movie`, 1, `action`);
 
       return {
-        showData,
+        showDate,
+        showYear,
+        percent,
         req,
         getMovies,
         getDetails,
