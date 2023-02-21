@@ -49,7 +49,7 @@ export default () => {
 
     const getDetails = async(getId) => {
       if (getId) {
-        return req(`movie/${getId}`, null);
+        return req(`${getId}`, null);
       }
     }
 
