@@ -2,20 +2,23 @@
   const movie = defineProps(["movie"]);
   const resMovie = ref();
   resMovie.value = movie.movie.data
-  // console.log(resMovie)
 </script>
 <template>
    <section class="container max-w-7xl mx-auto py-10 sm:py-16">
     <!-- Post Title -->
-    <div class="text-center mb-5">
+    <div class="text-center mb-20">
       <h1 class="text-3xl sm:text-5xl font-bold">
-        {{ resMovie.original_title}}
+        {{ resMovie.original_title }}
       </h1>
     </div>
     <!-- Post Meta -->
-    <div class="text-center mb-10">
-      <span class="mr-3">{{ Math.round(resMovie.vote_average) }}</span>
-      <span>{{ useMoviesApi().showData( `${resMovie.release_date}`) }}</span>
+    <div class="text-center mb-8">
+      <div class="precent-bar mb-5">
+          <span class="precent-per inline-block" :style="{'width':useMoviesApi().percent(`${resMovie.vote_average}`)+'%'}">
+            <span class="percent-tooltip inline-block">{{ useMoviesApi().percent(`${resMovie.vote_average}`) }} %</span>
+          </span>
+      </div>
+      <span>{{ useMoviesApi().showDate( `${resMovie.release_date}`) }}</span>
     </div>
     <!-- Post Image -->
     <div class="blog__image w-full h-[250px] sm:h-[500px] relative shadow-xl rounded overflow-hidden mb-10">
