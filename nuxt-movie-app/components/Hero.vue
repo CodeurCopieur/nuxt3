@@ -53,34 +53,33 @@
 <div class="component-app__wrap-sliderHero relative">
     <swiper ref="gallerySwiperParams" 
     grab-cursor lazy 
+    :preload-images="false"
     :loop="gallerySwiperParams.loop"
     :slide-to-clicked-slide="gallerySwiperParams.slideToClickedSlide" class="h-max w-full component-app__wrap-slider">
-        <SwiperSlide v-for="(movie, i) in resMovies" :key="i" class="component-app__wrap-slideHero relative">
+    <SwiperSlide v-for="(movie, i) in resMovies" :key="i" class="component-app__wrap-slideHero relative">
 
-            <div class="absolute z-10 h-full">
-                <div class="w-full xl:w-6/12 md:w-8/12 xl:pl-40 p-0 h-full flex items-center">
-                    <div class="px-8">
-                        
-                        <h3 class="text-xs text-lg text-4xl">{{ movie.original_title}}</h3>
-                        <div class="mt-8">
-                            <span>{{ movie.vote_average }}</span>
-                        </div>
-                        
-                        <p class="mt-8 text-xs text-lg">{{ movie.overview }}</p>
-                        <a :href="`movie/${movie.id}`" class="inline-block mt-8 py-2 px-6 bg-[#111827] rounded border-slate-300">
-                            <span>Voir</span>
-                        </a>
+        <div class="absolute z-10 h-full">
+            <div class="w-full xl:w-6/12 md:w-8/12 xl:pl-40 p-0 h-full flex items-center">
+                <div class="px-8">
+                    <h3 class="text-xs text-lg text-4xl">{{ movie.original_title}}</h3>
+                    <div class="mt-8">
+                        <span>{{ movie.vote_average }}</span>
                     </div>
+                    <p class="mt-8 text-xs text-lg">{{ movie.overview }}</p>
+                    <a :href="`movie/${movie.id}`" class="inline-block mt-8 py-2 px-6 bg-[#111827] rounded border-slate-300">
+                        <span>Voir</span>
+                    </a>
                 </div>
             </div>
+        </div>
             
-            <div class="component-app__aspect-ratio"></div>
-            <div class="component-app__linear-black"></div>
-            <picture>
-                <img :src="`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`" class="swiper-lazy" :alt="movie.original_title">
-            </picture>
-            
-        </SwiperSlide>
+        <div class="component-app__aspect-ratio"></div>
+        <div class="component-app__linear-black"></div>
+        <picture>
+            <img :src="`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`" class="swiper-lazy" :alt="movie.original_title">
+        </picture>
+
+    </SwiperSlide>
     </swiper>
 </div>
       <!-- <swiper 
