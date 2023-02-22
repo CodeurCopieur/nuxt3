@@ -1,5 +1,5 @@
 <script setup>
-  const getMovies = await useMoviesApi().getMovies('now_playing', 1);
+  const getMovies = await useMoviesApi().getMovies('movie/now_playing', 1);
   const allMovies  = ref();
   allMovies.value = getMovies;
 
@@ -7,7 +7,7 @@
 <template>
   <div>
     <Hero :movies="allMovies" />
-    <!-- <Content /> -->
+    <Content />
   </div>
   
 </template>
