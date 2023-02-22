@@ -7,31 +7,26 @@
 <template>
    <section class="container max-w-7xl mx-auto py-10 sm:py-16">
     <!-- Post Title -->
-    <div class="text-center mb-20">
+    <div class="text-center mb-10">
       <h1 class="text-3xl sm:text-5xl font-bold">
-        {{ data.original_title || data.original_name }}
+        {{ data.title || data.original_name }}
       </h1>
     </div>
     <!-- Post Meta -->
     <div class="text-center mb-8">
-      <div class="precent-bar mb-5">
-          <span class="precent-per inline-block" :style="{'width':useMoviesApi().percent(`${data.vote_average}`)+'%'}">
-            <span class="percent-tooltip inline-block">{{ useMoviesApi().percent(`${data.vote_average}`) }} %</span>
-          </span>
-      </div>
       <span>{{ useMoviesApi().showDate( `${data.release_date || data.first_air_date}`) }}</span>
     </div>
     <!-- Post Image -->
     <div class="postImage w-full rounded mb-10 relative">
-      <div class="postImage-bck h-[250px] sm:h-[500px] relative overflow-hidden">
-        <div class="postImage__aspect-ratio"></div>
+      <div class="postImage-bck h-[350px] sm:h-[550px] relative overflow-hidden">
+        <!-- <div class="postImage__aspect-ratio"></div> -->
         <picture>
           <img 
           :src="`https://image.tmdb.org/t/p/original${data.backdrop_path}`"
           :alt="`${data.original_title || data.original_name}`" />
         </picture>
       </div>
-      <div class="postImage-pst flex flex-col md:flex-row">
+      <div class="postImage-pst">
         <div class="postImage-cover relative">
           <div class="postImage-cover__aspect-ratio"></div>
           <picture>
@@ -39,10 +34,10 @@
               :alt="`${data.original_title || data.original_name}`">
           </picture>
         </div>
-        <div class="w-full h-full">
+        <div class="postImage-pst__info h-full">
           <div>
-            <h4></h4>
-            <div class="precent-bar mb-5">
+            <h4 class="text-xs text-2xl sm:text-3xl font-bold mb-12">{{ data.original_title || data.original_name }}</h4>
+            <div class="precent-bar">
               <span class="precent-per inline-block" :style="{'width':useMoviesApi().percent(`${data.vote_average}`)+'%'}">
                 <span class="percent-tooltip inline-block">{{ useMoviesApi().percent(`${data.vote_average}`) }} %</span>
               </span>
