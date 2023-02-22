@@ -44,7 +44,7 @@ export default () => {
       if (page) {
         query +=`${page}`;
       }
-       return req(`movie/${get}`, query);
+       return req(`${get}`, query);
     }
 
     const getDetails = async(getId) => {
