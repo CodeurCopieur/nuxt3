@@ -20,6 +20,10 @@
   }
 }
 
+.header {
+  z-index: 2000;
+}
+
 .loading span {
   display: block;
   width: 70px;
@@ -69,7 +73,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: top;
   transition: all .5s ease-in-out;
 }
 
@@ -115,7 +119,7 @@
 
 .precent-per .percent-tooltip {
   position: absolute;
-  right: -26px;
+  right: 0;
   top: -40px;
   font-size: 10px;
   font-weight: 800;
@@ -129,7 +133,7 @@
 .precent-per .percent-tooltip::before {
   content: '';
   position: absolute;
-  left: 50%;
+  right: -10px;
   bottom: -6px;
   width: 10px;
   height: 10px;
@@ -150,11 +154,6 @@
   z-index: 1000;
 }
 
-.postImage-cover {
-  width: 70%;
-  margin: 0px auto 2rem;
-}
-
 .postImage__aspect-ratio {
   padding-top: 60%;
 }
@@ -162,12 +161,25 @@
 .postImage-cover__aspect-ratio {
   padding-top: 160%;
 }
-
-.postImage-pst .percent-tooltip {
+ .postImage-pst__info, .postImage-cover {
   z-index: 1000;
 }
 
+.postImage-pst {
+  display: flex;
+  flex-direction: column;
+  margin-top: -15rem;
+}
+
 @media screen and (min-width: 1200px){
+
+  .component-app__wrap-slideHero img, 
+.component-app__wrap-movieCard img,
+.postImage-bck img,
+.postImage-cover img {
+  object-position: center;
+}
+
   .component-app__aspect-ratio, .component-app__aspect-ratio {
     padding-top: 45%;
   }
@@ -193,9 +205,20 @@
 
   .postImage-cover {
     width: 30%;
-    margin: -20rem 2rem 0 2rem;
+    margin: 0 2rem;
     z-index: 1000;
   }
+
+  .postImage-pst__info {
+    width: 60%;
+  }
+
+  .postImage-pst {
+    margin-top: -22rem;
+    flex-direction: row;
+  }
+
+
 }
 
   @media (min-width: 900px) and (max-width: 1200px){
@@ -218,13 +241,19 @@
       padding-top: 40%;
     }
 
-    .postImage-cover {
-      width: 50%;
-    }
   }
 
   @media (min-width: 0px) and (max-width: 600px) {
     .component-app__aspect-ratio {
       padding-top: 130%;
     }
+  }
+
+
+  @media (min-width: 0px) and (max-width: 1200px){
+    .postImage-cover {
+      width: 70%;
+      margin: 0px auto 4rem;
+    }
+    
   }
