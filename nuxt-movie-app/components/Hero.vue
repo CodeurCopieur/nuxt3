@@ -82,53 +82,7 @@
     </SwiperSlide>
     </swiper>
 </div>
-      <!-- <swiper 
-      class="mySwiper cursor-grab flex items-center"
-      :breakpoints="thumbnailSwiperParams.breakpoints"
-      :slides-per-view="thumbnailSwiperParams.slidesPerView"
-      :space-between="thumbnailSwiperParams.spaceBetween"
-      :loop="thumbnailSwiperParams.loop" 
-      lazy
-      grab-cursor
-      watch-slides-progress
-      ref="thumbnailSwiperParams" 
->
-        <SwiperSlide 
-            v-for="(movie, i) in resMovies" :key="i"
-            class="relative w-1/5 ">
-            <div></div>
-            <img :src="`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`" class="swiper-lazy" :alt="movie.original_title">
-            <h2 class="text-lg font-bold capitalize leading-tight text-white mb-1">{{movie.original_title}}</h2>
-        </SwiperSlide>
-      </swiper>
-
-    <div class="flex flex-row flex-wrap">
-        <div class="flex-shrink max-w-full w-full">
-            <div class="mx-10  grid grid-cols-1 gap-y-10 gap-x-8 sm:grid-cols-2 lg:grid-cols-3 xl-grid-cols-4">
-                <template  v-for="(movie, i) in resMovies" :key="i">
-                    <article  class="flex-shrink">
-                        <div class="relative hover-img max-h-48 overflow-hidden">
-                            <a :href="`movie/${movie.id}`">
-                                <img class="max-w-full w-full mx-auto h-auto" :src="`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`" alt="Image description">
-                            </a>
-                            <div class="absolute px-4 pt-7 pb-4 bottom-0 w-full bg-gradient-cover">
-                                <a :href="`movie/${movie.id}`">
-                                    <h2 class="text-lg font-bold capitalize leading-tight text-white mb-1">{{movie.original_title}}</h2>
-                                </a>
-                                <div class="pt-1">
-                                    <div class="text-gray-100">
-                                        <div class="inline-block h-3 border-l-2 border-red-600 mr-2"></div>Techno
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                </template>
-
-            </div>
-        </div>
-    </div> -->
-
+      
 </template>
 
 <style>
