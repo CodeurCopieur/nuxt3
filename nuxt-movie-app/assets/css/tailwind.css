@@ -171,6 +171,18 @@
   margin-top: -15rem;
 }
 
+/* slider */
+.swiperList.swiper {
+  padding-bottom: 2rem;
+}
+.swiperList .swiper-pagination-bullet:not(.swiper-pagination-bullet-active) {
+  background-color: #fff;
+  opacity: 1;
+} 
+.swiperList .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background-color: crimson;
+}
+
 @media screen and (min-width: 1200px){
 
   .component-app__wrap-slideHero img, 
