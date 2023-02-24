@@ -9,7 +9,7 @@
     :to="{ path:`/${type}/${movie.id}`}">
       <div class=" shadow-lg border border-gray-700 component-app__wrap-movieCard relative overflow-hidden">
           <picture>
-            <img :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`" :alt="movie.original_title">
+            <img :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`" :alt="movie.original_title || movie.original_name">
           </picture>
           <div class="component-app__wrap-movieCard-info">
             <span class="mt-8 text-xs text-lg inline-block">{{ useMoviesApi().showYear(`${movie.release_date}`) || useMoviesApi().showYear(`${movie.first_air_date}`) }}</span><br>
@@ -21,7 +21,7 @@
           </div>
       </div>
       <span class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-[#111827] relative inline-block before:border before:border-gray-700 ">
-        <span class="relative text-white">{{ movie.original_title ||movie.original_name }}</span>
+        <span class="relative text-white">{{ movie.original_title || movie.original_name }}</span>
         </span>
   </NuxtLink>
 </template>
