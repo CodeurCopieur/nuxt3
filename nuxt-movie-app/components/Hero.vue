@@ -9,9 +9,10 @@
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
       },
-      loop: true,                         
-      autoplay: {                         
-        delay: 8000,  
+      loop: true,
+      autoplay: {
+          delay: 8000,
+          disableOnInteraction: false  
       },
       pagination:{ clickable: true, dynamicBullets: true },
     };
@@ -23,6 +24,7 @@
             ref="gallerySwiperParams" 
             grab-cursor lazy 
             :modules="[SwiperAutoplay, SwiperPagination]"
+            :autoplay="gallerySwiperParams.autoplay"
             :preload-images="true"
             :loop="gallerySwiperParams.loop"
             :slide-to-clicked-slide="gallerySwiperParams.slideToClickedSlide" class="h-max w-full component-app__wrap-slider">
