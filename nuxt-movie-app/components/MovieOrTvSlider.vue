@@ -50,7 +50,7 @@
     :breakpoints="thumbnailSwiperParams.breakpoints"
     :pagination="thumbnailSwiperParams.pagination">
     <SwiperSlide v-for="(movie, i) in data.results" :key="i" class="h-full shadow-xl mr-0 sm:mr-4 border border-gray-700 hover:bg-gray-900 shadow-custom overflow-hidden">
-      <a :href="`movie/${movie.id}`">
+      <a :href="`${type}/${movie.id}`">
         <div class="relative" style="padding-top: 160%;">
           <picture>
             <img 
@@ -66,5 +66,6 @@
       </a>
     </SwiperSlide>
   </swiper>
- 
+  
+  
 </template>
