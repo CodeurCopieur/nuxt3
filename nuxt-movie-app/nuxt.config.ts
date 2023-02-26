@@ -23,5 +23,4 @@ export default defineNuxtConfig({
     
   },
   modules: ['@nuxtjs/tailwindcss', 'nuxt-swiper'],
-  swiper: ['pagination']
 })
