@@ -1,19 +1,18 @@
 <script setup>
-  const { type } = defineProps(['type']);
+
+  const { type } = defineProps(['type', 'value']);
   const {id} = useRoute().params;
   const page = ref(1);
   const movies = await useMoviesApi().getMoviesD(`discover/movie`, page.value, `${id}`);
 
-  console.log(movies);
   async function sendChange(e) {
-    page.value++;
     console.log(await useMoviesApi().getMoviesD(`discover/movie`, page.value, `${id}`));
 
   };
+
 </script>
 
 <template>
-  <section class="container max-w-7xl max-w-2xl mx-auto px-4 py-8 lg:max-w-7xl  grid grid-cols-1 gap-y-10 gap-x-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
     <NuxtLink
       v-for="(movie, i) in movies" :key="i" 
       :to="{ path:`/${type}/${movie.id}`}">
@@ -34,6 +33,7 @@
           <span class="relative text-white">{{ movie.original_title ||movie.original_name }}</span>
           </span>
     </NuxtLink>
-  </section>
+
+    
   <button class="my-5 w-full" @click="sendChange" >+</button>
 </template>

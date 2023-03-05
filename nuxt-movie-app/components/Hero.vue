@@ -1,6 +1,6 @@
 <script setup>
     const { movies } = defineProps(['movies']);
-    const resMovies = ref(movies.data.results);
+    const resMovies = ref(movies);
    
     const gallerySwiperParams = {
       spaceBetween: 10,
@@ -28,7 +28,7 @@
             :preload-images="true"
             :loop="gallerySwiperParams.loop"
             :slide-to-clicked-slide="gallerySwiperParams.slideToClickedSlide" class="h-max w-full component-app__wrap-slider">
-        <SwiperSlide v-for="(movie, i) in resMovies" :key="i" class="component-app__wrap-slideHero relative">
+        <SwiperSlide v-for="(movie, i) in movies" :key="i" class="component-app__wrap-slideHero relative">
 
             <div class="absolute z-10 h-full">
                 <div class="w-full xl:w-6/12 md:w-8/12 xl:pl-40 p-0 h-full flex items-center">
