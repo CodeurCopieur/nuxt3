@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export default () => {
   const config = useRuntimeConfig();
   const baseUrl = config.public.baseUrl;
@@ -32,9 +34,9 @@ export default () => {
     // Movie Discover : https://api.themoviedb.org/3/discover/movie?api_key={CURRENCY_API_KEY}&sort_by=popularity.desc&page=${page}
     const req = async(get, page, option) => {
       if(page) {
-        return useFetch(`${baseUrl}${get}?api_key=${apiKey}${page}`)
+        return useFetch(`${baseUrl}${get}?api_key=${apiKey}${page}`, { baseURL: baseUrl })
       } else {
-        return useFetch(`${baseUrl}${get}?api_key=${apiKey}`)
+        return useFetch(`${baseUrl}${get}?api_key=${apiKey}`, { baseURL: baseUrl })
       }
     }
 
@@ -61,9 +63,9 @@ export default () => {
 
     const reqDiscover = async(get, page, genre) => {
       if(page && genre) {
-        return useFetch(`${baseUrl}${get}?api_key=${apiKey}&sort_by=popularity.desc${page}${genre}`)
-      }else if(genre === null) {
-        return useFetch(`${baseUrl}${get}?api_key=${apiKey}&sort_by=popularity.desc${page}`)
+        const response = await axios.get(`${baseUrl}${get}?api_key=${apiKey}&sort_by=popularity.desc${page}${genre}`)
+        const movies = response.data.results;
+        return movies
       }
     }
 
