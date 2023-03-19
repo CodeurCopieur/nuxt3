@@ -1,7 +1,7 @@
 <script setup>
   const { type } = defineProps(['type']);
   const {id} = useRoute().params;
-  const {data} = await useMoviesApi().getDetails(`${type}/${id}`);
+  const data = await useMoviesApi().getDetails(`${type}/${id}`);
 
 </script>
 <template>
@@ -19,7 +19,7 @@
     <!-- Post Image -->
     <div class="postImage w-full rounded mb-10 relative">
       <div class="postImage-bck h-[350px] sm:h-[550px] relative overflow-hidden">
-        <!-- <div class="postImage__aspect-ratio"></div> -->
+        <div class="postImage__aspect-ratio"></div>
         <picture>
           <img 
           :src="`https://image.tmdb.org/t/p/original${data.backdrop_path}`"

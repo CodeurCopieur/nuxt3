@@ -1,6 +1,6 @@
 <script setup>
   const { type, theme } = defineProps(['type', 'theme']);
-  const { data } = await useMoviesApi().getMovies(`${type}/${theme}`, 1);
+  const movies = await useMoviesApi().getMovies(`${type}/${theme}`, 1);
 
   const thumbnailSwiperParams = {
       spaceBetween: 10,
@@ -49,7 +49,7 @@
     :loop="thumbnailSwiperParams.loop"
     :breakpoints="thumbnailSwiperParams.breakpoints"
     :pagination="thumbnailSwiperParams.pagination">
-    <SwiperSlide v-for="(movie, i) in data.results" :key="i" class="h-full shadow-xl mr-0 sm:mr-4 border border-gray-700 hover:bg-gray-900 shadow-custom overflow-hidden">
+    <SwiperSlide v-for="(movie, i) in movies" :key="i" class="h-full shadow-xl mr-0 sm:mr-4 border border-gray-700 hover:bg-gray-900 shadow-custom overflow-hidden">
       <a :href="`${type}/${movie.id}`">
         <div class="relative" style="padding-top: 160%;">
           <picture>

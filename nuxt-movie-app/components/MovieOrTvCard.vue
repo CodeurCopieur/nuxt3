@@ -1,11 +1,11 @@
 <script setup>
     const { type } = defineProps(['type']);
-    const {data} = await useMoviesApi().getMoviesD(`discover/${type}`, 1, null);
+    const movies = await useMoviesApi().getMoviesD(`discover/${type}`, 1, null);
 </script>
 
 <template>
   <NuxtLink
-    v-for="(movie, i) in data.results" :key="i" 
+    v-for="(movie, i) in movies" :key="i" 
     :to="{ path:`/${type}/${movie.id}`}">
       <div class=" shadow-lg border border-gray-700 component-app__wrap-movieCard relative overflow-hidden">
           <picture>
