@@ -34,9 +34,16 @@ export default () => {
     // Movie Discover : https://api.themoviedb.org/3/discover/movie?api_key={CURRENCY_API_KEY}&sort_by=popularity.desc&page=${page}
     const req = async(get, page, option) => {
       if(page) {
-        return useFetch(`${baseUrl}${get}?api_key=${apiKey}${page}`, { baseURL: baseUrl })
+        // return useFetch(`${baseUrl}${get}?api_key=${apiKey}${page}`, { baseURL: baseUrl })
+
+        const response = await axios.get(`${baseUrl}${get}?api_key=${apiKey}${page}`)
+        const movies = response.data.results;
+        return movies
       } else {
-        return useFetch(`${baseUrl}${get}?api_key=${apiKey}`, { baseURL: baseUrl })
+        // return useFetch(`${baseUrl}${get}?api_key=${apiKey}`, { baseURL: baseUrl })
+        const response = await axios.get(`${baseUrl}${get}?api_key=${apiKey}`)
+        const movies = response.data.results;
+        return movies
       }
     }
 
@@ -51,18 +58,22 @@ export default () => {
 
     const getDetails = async(getId) => {
       if (getId) {
-        return req(`${getId}`, null);
+        const response = await axios.get(`${baseUrl}/${getId}?api_key=${apiKey}`)
+        return response.data
       }
     }
 
     // Get All Genres: https://api.themoviedb.org/3/genre/movie/list?api_key={CURRENCY_API_KEY}
 
-    const getGenres = async() => req(`genre/movie/list`);
+    const getGenres = async() => {
+      const response = await axios.get(`${baseUrl}/genre/movie/list?api_key=${apiKey}`)
+      return response
+    };
 
     // Get Movies By Genres: https://api.themoviedb.org/3/discover/movie?api_key={CURRENCY_API_KEY}&sort_by=popularity.desc&page=1&with_genres={CURRENCY_GENRE}
 
     const reqDiscover = async(get, page, genre) => {
-      if(page && genre) {
+      if(page) {
         const response = await axios.get(`${baseUrl}${get}?api_key=${apiKey}&sort_by=popularity.desc${page}${genre}`)
         const movies = response.data.results;
         return movies
