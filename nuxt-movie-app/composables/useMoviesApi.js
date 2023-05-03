@@ -80,7 +80,7 @@ export default () => {
       }
     }
 
-    const getMoviesD = async(get, page=1, genre) => {
+    const getMoviesD = async(get, page, genre) => {
       let query = `&page=`;
       let query2 = `&with_genres=`;
 
