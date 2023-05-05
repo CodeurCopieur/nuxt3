@@ -1,15 +1,28 @@
 <script setup>
 
   const { type } = defineProps(['type']);
+  const router = useRouter();
   const {id} = useRoute().params;
+  const {name} = useRoute().query;
   const page = ref(1);
   const movies = ref([]);
 
   movies.value = await useMoviesApi().getMoviesD(`discover/${type}`, page.value, `${id}`);
 
+if (name === '' || id === '') {
+  router.push('/genres')
+} else {
+  router.push({query: {name: name, page: page.value}, path:`/genres/${id}`})
+}
+    
+
+
   async function more(e) {
     page.value++
-    movies.value = await useMoviesApi().getMoviesD(`discover/${type}`, page.value, `${id}`)
+  
+    
+    router.push({query: {name: name, page: page.value}, path:`/genres/${id}`})
+      movies.value = await useMoviesApi().getMoviesD(`discover/${type}`, page.value, `${id}`)
   };
 
 </script>
