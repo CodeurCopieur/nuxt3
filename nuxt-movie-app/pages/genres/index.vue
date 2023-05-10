@@ -5,7 +5,8 @@
 </script>
 <template>
   <div>
-    <PageHeader title="Movie : Genre"></PageHeader>
+    <PageHeader title="Genre"></PageHeader>
+
     <section class="py-10 container max-w-7xl mx-auto">
       <div class="flex flex-wrap gap-5">
         <NuxtLink 
