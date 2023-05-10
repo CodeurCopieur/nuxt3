@@ -58,7 +58,7 @@ export default () => {
 
     const getDetails = async(getId) => {
       if (getId) {
-        const response = await axios.get(`${baseUrl}/${getId}?api_key=${apiKey}`)
+        const response = await axios.get(`${baseUrl}${getId}?api_key=${apiKey}`)
         return response.data
       }
     }
@@ -66,7 +66,7 @@ export default () => {
     // Get All Genres: https://api.themoviedb.org/3/genre/movie/list?api_key={CURRENCY_API_KEY}
 
     const getGenres = async() => {
-      const response = await axios.get(`${baseUrl}/genre/movie/list?api_key=${apiKey}`)
+      const response = await axios.get(`${baseUrl}genre/movie/list?api_key=${apiKey}`)
       return response
     };
 
