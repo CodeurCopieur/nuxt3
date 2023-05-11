@@ -65,8 +65,8 @@ export default () => {
 
     // Get All Genres: https://api.themoviedb.org/3/genre/movie/list?api_key={CURRENCY_API_KEY}
 
-    const getGenres = async() => {
-      const response = await axios.get(`${baseUrl}genre/movie/list?api_key=${apiKey}`)
+    const getGenres = async(type) => {
+      const response = await axios.get(`${baseUrl}genre/${type}/list?api_key=${apiKey}`)
       return response
     };
 
