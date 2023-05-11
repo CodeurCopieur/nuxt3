@@ -42,7 +42,7 @@
       <span class="my-5" @click="pageCall(false)" v-if="page > 1">P</span>  
       <input class="my-5 w-16 current text-center outline-none" 
         @input="handleBlur" 
-        v-model="page" min="1" type="number" style="color: #111827"/>  
+        v-model.number="page" min="1" max="500" type="number" style="color: #111827"/>  
       <span class="my-5" @click="pageCall(true)" >N</span>
       
     </div>
