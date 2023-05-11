@@ -184,9 +184,6 @@
 }
 
 .current {
-  /* margin: 0 20px;
-  padding: .9375rem 1.25rem;
-  border-radius: 50%; */
   border: .3125rem solid #373b69;
   font-size: 1.25rem;
   font-weight: 600;
