@@ -36,12 +36,12 @@ export default () => {
       if(page) {
         // return useFetch(`${baseUrl}${get}?api_key=${apiKey}${page}`, { baseURL: baseUrl })
 
-        const response = await axios.get(`${baseUrl}${get}?api_key=${apiKey}${page}`)
+        const response = await axios.get(`${baseUrl}${get}?api_key=${apiKey}&sort_by=popularity.desc${page}`)
         const movies = response.data.results;
         return movies
       } else {
         // return useFetch(`${baseUrl}${get}?api_key=${apiKey}`, { baseURL: baseUrl })
-        const response = await axios.get(`${baseUrl}${get}?api_key=${apiKey}`)
+        const response = await axios.get(`${baseUrl}${get}?api_key=${apiKey}&sort_by=popularity.desc`)
         const movies = response.data.results;
         return movies
       }
