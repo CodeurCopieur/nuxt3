@@ -37,13 +37,27 @@
     movies.value = await useMoviesApi().getMoviesD(`discover/${type}`, page.value, `${id}`)
   };
 
+      async function handleBlur() {
+      if(page.value === "" || page.value === null) {
+
+        page.value = 1
+        movies.value = ''
+        movies.value = await useMoviesApi().getMoviesD(`discover/${type}`, 1, `${id}`)
+      } else {
+        movies.value = ''
+        movies.value = await useMoviesApi().getMoviesD(`discover/${type}`, page.value, `${id}`)
+      }
+    }
+
 </script>
 <template ref="mainOffsetTRef">
 
 <div class="container max-w-xs mx-auto pagination">
     <div class="flex justify-center items-center">
       <span class="my-5 w-full" @click="pageCall(false)" v-if="page > 1">P</span>  
-      <span class="my-5 w-full current"> {{ page }}</span>  
+      <input class="my-5 w-16 current text-center outline-none" 
+        @input="handleBlur" 
+        v-model="page" min="1" type="number" style="color: #111827"/>  
       <span class="my-5 w-full" @click="pageCall(true)" >N</span>
       
     </div>

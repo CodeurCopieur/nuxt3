@@ -19,18 +19,31 @@
       }
     
       movies.value = ''
-      // router.push({query: {page: page.value}, path:`/movie/`})
       movies.value = await useMoviesApi().getMovies(`discover/${type}`, page.value)
     };
+
+    async function handleBlur() {
+      if(page.value === "" || page.value === null) {
+
+        page.value = 1
+        movies.value = ''
+        movies.value = await useMoviesApi().getMovies(`discover/${type}`, 1)
+      } else {
+        movies.value = ''
+        movies.value = await useMoviesApi().getMovies(`discover/${type}`, page.value)
+      }
+    }
 </script>
 
 <template ref="mainOffsetTRef">
 
 <div class="container max-w-xs mx-auto pagination">
     <div class="flex justify-center items-center">
-      <span class="my-5 w-full" @click="pageCall(false)" v-if="page > 1">P</span>  
-      <span class="my-5 w-full current"> {{ page }}</span>  
-      <span class="my-5 w-full" @click="pageCall(true)" >N</span>
+      <span class="my-5" @click="pageCall(false)" v-if="page > 1">P</span>  
+      <input class="my-5 w-16 current text-center outline-none" 
+        @input="handleBlur" 
+        v-model="page" min="1" type="number" style="color: #111827"/>  
+      <span class="my-5" @click="pageCall(true)" >N</span>
       
     </div>
 </div>
