@@ -1,10 +1,41 @@
 <script setup>
     const { type } = defineProps(['type']);
-    const movies = await useMoviesApi().getMoviesD(`discover/${type}`, 1, null);
+    const mainOffsetTRef = ref(null)
+    const page = ref(1);
+    const mainOffsetT = mainOffsetTRef.value;
+    const movies = ref([]);
+    movies.value = await useMoviesApi().getMovies(`discover/${type}`, 1);
+
+    async function pageCall(resBool) {
+      window.scrollTo({
+        top: mainOffsetT,
+        behavior: "smooth"
+      })
+
+      if (resBool) {
+        page.value++
+      } else {
+        page.value--
+      }
+    
+      movies.value = ''
+      // router.push({query: {page: page.value}, path:`/movie/`})
+      movies.value = await useMoviesApi().getMovies(`discover/${type}`, page.value)
+    };
 </script>
 
-<template>
-  <NuxtLink
+<template ref="mainOffsetTRef">
+
+<div class="container max-w-xs mx-auto pagination">
+    <div class="flex justify-center items-center">
+      <span class="my-5 w-full" @click="pageCall(false)" v-if="page > 1">P</span>  
+      <span class="my-5 w-full current"> {{ page }}</span>  
+      <span class="my-5 w-full" @click="pageCall(true)" >N</span>
+      
+    </div>
+</div>
+<div class="container max-w-7xl max-w-2xl mx-auto px-4 py-8 lg:max-w-7xl grid grid-cols-1 gap-y-10 gap-x-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+    <NuxtLink
     v-for="(movie, i) in movies" :key="i" 
     :to="{ path:`/${type}/${movie.id}`}">
       <div class=" shadow-lg border border-gray-700 component-app__wrap-movieCard relative overflow-hidden">
@@ -25,4 +56,6 @@
         <span class="relative text-white">{{ movie.original_title || movie.original_name }}</span>
         </span>
   </NuxtLink>
+</div>
+
 </template>
