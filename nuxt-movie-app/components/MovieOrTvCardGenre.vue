@@ -38,13 +38,15 @@
   };
 
       async function handleBlur() {
-      if(page.value === "" || page.value === null) {
+      if(page.value === "" || page.value === null || page.value > 500) {
 
         page.value = 1
         movies.value = ''
+        router.push({query: {type: type, name: name, page: 1}, path:`/genres/${id}`})
         movies.value = await useMoviesApi().getMoviesD(`discover/${type}`, 1, `${id}`)
       } else {
         movies.value = ''
+        router.push({query: {type: type, name: name, page: page.value}, path:`/genres/${id}`})
         movies.value = await useMoviesApi().getMoviesD(`discover/${type}`, page.value, `${id}`)
       }
     }
@@ -57,7 +59,7 @@
       <span class="my-5 w-full" @click="pageCall(false)" v-if="page > 1">P</span>  
       <input class="my-5 w-16 current text-center outline-none" 
         @input="handleBlur" 
-        v-model="page" min="1" type="number" style="color: #111827"/>  
+        v-model.number="page" min="1" max="500" type="number" style="color: #111827"/>  
       <span class="my-5 w-full" @click="pageCall(true)" >N</span>
       
     </div>
