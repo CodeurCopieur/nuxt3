@@ -13,6 +13,6 @@
 
 <style>
   .hero {
-    @apply py-16 bg-[#111827];
+    @apply pt-14 bg-[#111827];
   } 
 </style>
