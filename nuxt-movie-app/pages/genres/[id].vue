@@ -3,10 +3,10 @@
 </script>
 <template>
   <div>
-    <PageHeader :title="query.name.toUpperCase()"  type="movie"></PageHeader>
+    <PageHeader :title="query.name.toUpperCase()"></PageHeader>
 
   <section>
-    <MovieOrTvCardGenre type="movie" />
+    <MovieOrTvCardGenre />
   </section>
   
   </div>
