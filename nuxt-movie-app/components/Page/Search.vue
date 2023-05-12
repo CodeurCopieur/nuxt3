@@ -2,22 +2,27 @@
   // const picked = ref('movie');
 
   const state = reactive({
-  picked: 'movie',
-  options: [
-    { label: 'Movie', value: 'movie' },
-    { label: 'Person', value: 'person' },
-    { label: 'Tv', value: 'tv' }
-  ]
-});
+    search: '',
+    picked: 'movie',
+    options: [
+      { label: 'Movie', value: 'movie' },
+      { label: 'Person', value: 'person' },
+      { label: 'Tv', value: 'tv' }
+    ]
+  });
 
 const handleOptionChange = (event) => {
   state.picked = event.target.value
-  console.log(event);
 };
 
 const getClassForOption = (optionValue) => {
-  return state.picked === optionValue ? 'border-b-8 border-indigo-800' : ''
+  return state.picked === optionValue ? 'border-b-4 border-indigo-800' : ''
 };
+
+
+async function handleBlur(event) {
+  console.log(event);
+}
 </script>
 
 <template>
@@ -33,14 +38,28 @@ const getClassForOption = (optionValue) => {
               @change="handleOptionChange"  />
         {{ option.label }}</label>
       </li>
+
+      <form class="mt-6">
+        <input 
+          @input="handleBlur"
+          type="text" class="w-full border-b-4 border-indigo-800 outline-none p-2 text-indigo-800 text-center" style="line-height: 1.75rem;" 
+          placeholder="Que cherchez-vous ?" 
+          v-model="state.search" />
+      </form>
     </ul>
   </section>
 </template>
 
 <style scoped>
+  .wrapper_li form {
+    flex: 1 0 100%;
+  }
   .wrapper_li {
-    overflow: hidden;
+    overflow-y: hidden;
     position: relative;
+
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .wrapper_li li label input {
