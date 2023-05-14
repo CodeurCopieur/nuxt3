@@ -8,7 +8,9 @@
       { label: 'Movie', value: 'movie' },
       { label: 'Person', value: 'person' },
       { label: 'Tv', value: 'tv' }
-    ]
+    ],
+    allItems: [],
+    page: 1
   });
 
 const handleOptionChange = (event) => {
@@ -16,18 +18,23 @@ const handleOptionChange = (event) => {
 };
 
 const getClassForOption = (optionValue) => {
-  return state.picked === optionValue ? 'border-b-4 border-indigo-800' : ''
+  return state.picked === optionValue ? 'border-b-4 border-blue-800' : ''
 };
 
 
 async function handleBlur(event) {
-  console.log(event);
+  state.allItems = await useMoviesApi().search(state.picked, state.search, 1);
+
+  
+  if (!state.search) {
+    state.allItems = []
+  }
 }
 </script>
 
 <template>
-  <section class="container max-w-7xl max-w-2xl mx-auto px-4 py-8">
-    <ul class="flex justify-center wrapper_li">
+  <section class="">
+    <ul class="container max-w-7xl max-w-2xl mx-auto px-4 py-8 flex justify-center wrapper_li">
       <li class="flex-auto text-center" 
           v-for="(option, index) in state.options" 
           :key="index">
@@ -42,11 +49,19 @@ async function handleBlur(event) {
       <form class="mt-6">
         <input 
           @input="handleBlur"
-          type="text" class="w-full border-b-4 border-indigo-800 outline-none p-2 text-indigo-800 text-center" style="line-height: 1.75rem;" 
+          type="text" class="w-full border-b-4 border-blue-800 outline-none p-2 text-blue-800 text-center" style="line-height: 1.75rem;" 
           placeholder="Que cherchez-vous ?" 
           v-model="state.search" />
       </form>
     </ul>
+
+    <div 
+      v-if="state.allItems.length"
+      class="container max-w-7xl max-w-2xl mx-auto px-4 py-8 lg:max-w-7xl grid grid-cols-1 gap-y-10 gap-x-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+
+      <SearchCard :items="state.allItems" :type="state.picked"></SearchCard>
+
+    </div>
   </section>
 </template>
 
