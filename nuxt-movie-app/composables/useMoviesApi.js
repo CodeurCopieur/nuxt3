@@ -100,6 +100,7 @@ export default () => {
       if(value) {
         const response = await axios.get(`${baseUrl}search/${keyword}?api_key=${apiKey}&query=${value}&page=${page}`)
         const movies = response.data.results;
+        const totalResults = response.data.total_results
         return movies
       }
     }
