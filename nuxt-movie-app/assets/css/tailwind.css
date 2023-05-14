@@ -184,7 +184,7 @@
 }
 
 .current {
-  border: .3125rem solid #373b69;
+  /* border: .3125rem solid #1E40AF; */
   font-size: 1.25rem;
   font-weight: 600;
 }
