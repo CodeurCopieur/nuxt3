@@ -13,7 +13,7 @@
     <section class="py-10 container max-w-7xl mx-auto">
       <div class="flex flex-wrap gap-5">
         <NuxtLink 
-        class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-pink-500 relative inline-block block py-2 px-4 bg-gray-300 rounded hover:bg-gray-400"
+        class="before:block before:absolute before:-inset-1 before:-skew-x-2 before:bg-blue-800 relative inline-block block py-2 px-4 bg-gray-300 hover:bg-gray-400"
           v-for="genre in genresMovie"
           :key="genre.id"
           :to="{query: {type: 'movie', name: genre.name.toLowerCase(), page: 1}, path:`/genres/${genre.id}`}"
@@ -28,7 +28,7 @@
     <section class="py-10 container max-w-7xl mx-auto">
       <div class="flex flex-wrap gap-5">
         <NuxtLink 
-        class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-pink-500 relative inline-block block py-2 px-4 bg-gray-300 rounded hover:bg-gray-400"
+        class="before:block before:absolute before:-inset-1 before:-skew-x-2 before:bg-blue-800 relative inline-block block py-2 px-4 bg-gray-300 hover:bg-gray-400"
           v-for="genre in genresTv"
           :key="genre.id"
           :to="{query: {type: 'tv', name: genre.name.toLowerCase(), page: 1}, path:`/genres/${genre.id}`}"
