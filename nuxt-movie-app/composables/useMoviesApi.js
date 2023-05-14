@@ -29,7 +29,7 @@ export default () => {
 
     // Get Top Rated : https://api.themoviedb.org/3/movie/top_rated?api_key={CURRENCY_API_KEY}&page=${page}
 
-    // Get Details: https://api.themoviedb.org/3/movie/{movie_id}?api_key={CURRENCY_API_KEY}
+
 
     // Movie Discover : https://api.themoviedb.org/3/discover/movie?api_key={CURRENCY_API_KEY}&sort_by=popularity.desc&page=${page}
     const req = async(get, page, option) => {
@@ -55,6 +55,8 @@ export default () => {
       }
        return req(`${get}`, query);
     }
+
+    // Get Details: https://api.themoviedb.org/3/movie/{movie_id}?api_key={CURRENCY_API_KEY}
 
     const getDetails = async(getId) => {
       if (getId) {
@@ -93,7 +95,14 @@ export default () => {
        return reqDiscover(`${get}`, query, query2);
     }
 
-    // const getMoviesByGenres = async() => getMoviesD(`discover/movie`, 1, `action`);
+    // Search Movie or Person or Tv
+    const search = async(keyword, value, page) => {
+      if(value) {
+        const response = await axios.get(`${baseUrl}search/${keyword}?api_key=${apiKey}&query=${value}&page=${page}`)
+        const movies = response.data.results;
+        return movies
+      }
+    }
 
       return {
         showDate,
@@ -103,7 +112,8 @@ export default () => {
         getMovies,
         getDetails,
         getGenres,
-        getMoviesD
+        getMoviesD,
+        search
       };
 
   // Series
