@@ -38,8 +38,8 @@
                             <span>{{ movie.vote_average }}</span>
                         </div>
                         <p class="mt-8 text-xs text-lg">{{ movie.overview.substring(0,200)+".." }}</p>
-                        <a :href="`movie/${movie.id}`" class="inline-block mt-8 py-2 px-6 bg-[#111827]" style="box-shadow: 1px 1px 4px 0px #fff;">
-                            <span>Voir</span>
+                        <a :href="`movie/${movie.id}`" class="inline-block mt-8 py-2 px-6 bg-[#111827] border-b-4 border-blue-800">
+                            <span>PLUS</span>
                         </a>
                     </div>
                 </div>
