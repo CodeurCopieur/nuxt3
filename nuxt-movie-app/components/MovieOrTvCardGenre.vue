@@ -57,7 +57,7 @@
 <div class="container max-w-xs mx-auto pagination">
     <div class="flex justify-center items-center">
       <span class="my-5 w-full" @click="pageCall(false)" v-if="page > 1">P</span>  
-      <input class="my-5 w-16 current text-center outline-none" 
+      <input class="my-5 w-16 border-b-4 border-blue-800 current text-center outline-none" 
         @input="handleBlur" 
         v-model.number="page" min="1" max="500" type="number" style="color: #111827"/>  
       <span class="my-5 w-full" @click="pageCall(true)" >N</span>
@@ -82,7 +82,7 @@
               </div>
             </div>
         </div>
-        <span class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-[#111827] relative inline-block before:border before:border-gray-700 ">
+        <span class="before:block before:absolute before:-inset-1 before:-skew-x-2 before:bg-[#111827] relative inline-block before:border before:border-gray-700 ">
           <span class="relative text-white">{{ movie.original_title ||movie.original_name }}</span>
           </span>
     </NuxtLink>
