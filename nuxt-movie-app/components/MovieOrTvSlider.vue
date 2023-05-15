@@ -59,7 +59,7 @@
           </picture>
           <div class="precent-bar mt-8">
                 <span class="precent-per inline-block" :style="{'width':useMoviesApi().percent(`${movie.vote_average}`)+'%'}">
-                  <span class="percent-tooltip inline-block">{{ useMoviesApi().percent(`${movie.vote_average}`) }} %</span>
+                  <span class="percent-tooltip inline-block">{{ useMoviesApi().percent(`${movie.vote_average}`) }}</span>
                 </span>
               </div>
         </div>
