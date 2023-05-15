@@ -23,8 +23,9 @@ const getClassForOption = (optionValue) => {
 
 
 async function handleBlur(event) {
+  event.preventDefault();
+  
   state.allItems = await useMoviesApi().search(state.picked, state.search, 1);
-
   
   if (!state.search) {
     state.allItems = []
@@ -48,7 +49,7 @@ async function handleBlur(event) {
 
       <form class="mt-6">
         <input 
-          @input="handleBlur"
+          @keypress.enter="handleBlur"
           type="text" class="w-full border-b-4 border-blue-800 outline-none p-2 text-blue-800 text-center" style="line-height: 1.75rem;" 
           placeholder="Que cherchez-vous ?" 
           v-model="state.search" />
