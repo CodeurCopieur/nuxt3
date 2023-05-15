@@ -19,7 +19,7 @@ export default () => {
   const percent = (note)=> {
     var result = note/10*100;
 
-    return Math.ceil(result)
+    return parseInt(result)
   };
 
   //Movies 
