@@ -1,5 +1,4 @@
 <script setup>
-  // const picked = ref('movie');
 
   const state = reactive({
     search: '',
@@ -15,6 +14,8 @@
 
 const handleOptionChange = (event) => {
   state.picked = event.target.value
+  state.search = ''
+  state.allItems = []
 };
 
 const getClassForOption = (optionValue) => {
@@ -29,6 +30,7 @@ async function handleBlur(event) {
   
   if (!state.search) {
     state.allItems = []
+    return
   }
 }
 </script>
@@ -43,13 +45,16 @@ async function handleBlur(event) {
           <input type="radio" id="movie" 
               :value="option.value" 
               v-model="state.picked" 
+              
               @change="handleOptionChange"  />
         {{ option.label }}</label>
       </li>
 
       <form class="mt-6">
         <input 
+
           @keypress.enter="handleBlur"
+          @input="handleBlur"
           type="text" class="w-full border-b-4 border-blue-800 outline-none p-2 text-blue-800 text-center" style="line-height: 1.75rem;" 
           placeholder="Que cherchez-vous ?" 
           v-model="state.search" />
