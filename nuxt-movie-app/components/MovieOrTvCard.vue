@@ -1,8 +1,9 @@
 <script setup>
     const { type } = defineProps(['type']);
     const mainOffsetTRef = ref(null)
-    const page = ref(1);
     const mainOffsetT = mainOffsetTRef.value;
+    const page = ref(1);
+
     const movies = ref([]);
     movies.value = await useMoviesApi().getMovies(`discover/${type}`, 1);
 
@@ -23,7 +24,7 @@
     };
 
     async function handleBlur() {
-      if(page.value === "" || page.value === null) {
+      if(page.value === "" || page.value === null || page.value > 500) {
 
         page.value = 1
         movies.value = ''
