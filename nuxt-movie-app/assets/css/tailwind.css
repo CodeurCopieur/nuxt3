@@ -226,8 +226,8 @@
     object-position: center;
   }
 
-  .component-app__aspect-ratio, .component-app__aspect-ratio {
-    padding-top: 45%;
+  .component-app__aspect-ratio {
+    padding-top: 53%;
   }
   
   .component-app__wrap-movieCard:hover img {
