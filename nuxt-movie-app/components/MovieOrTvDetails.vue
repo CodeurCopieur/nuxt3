@@ -49,6 +49,7 @@
 
             <div v-if="type === 'movie' && data.popularity > 1 || type ==='tv' && data.popularity > 1" class="precent-bar" >
               <span class="precent-per inline-block" 
+                :class="useMoviesApi().getColor(`${parseInt(data.vote_average)}`)"
                 :style="{'width':useMoviesApi().percent(`${parseInt(data.vote_average)}`)+'%'}">
                 <span class="percent-tooltip inline-block">{{ useMoviesApi().percent(`${parseInt(data.vote_average)}`) }}</span>
               </span>

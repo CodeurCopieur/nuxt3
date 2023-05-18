@@ -58,7 +58,9 @@
               :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`" :alt="`${movie.original_title || movie.original_name}`">
           </picture>
           <div class="precent-bar mt-8">
-                <span class="precent-per inline-block" :style="{'width':useMoviesApi().percent(`${movie.vote_average}`)+'%'}">
+                <span class="precent-per inline-block" 
+                  :class="useMoviesApi().getColor(`${parseInt(movie.vote_average)}`)"
+                  :style="{'width':useMoviesApi().percent(`${movie.vote_average}`)+'%'}">
                   <span class="percent-tooltip inline-block">{{ useMoviesApi().percent(`${movie.vote_average}`) }}</span>
                 </span>
               </div>
