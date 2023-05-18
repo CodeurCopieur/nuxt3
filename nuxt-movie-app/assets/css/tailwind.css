@@ -105,8 +105,7 @@
 .precent-bar {
   height: 8px;
   width: 100%;
-  border-radius: 6px;
-  background-color: rgba(0, 0, 0, .1);
+  background-color: rgba(255, 252, 252, 0.1);
 }
 
 .precent-bar .precent-per {
@@ -114,7 +113,6 @@
   display: block;
   height: 100%;
   border: 1px solid #fff;
-  background: #fff;
 }
 
 .precent-per .percent-tooltip {
