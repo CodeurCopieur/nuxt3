@@ -9,12 +9,23 @@ export default () => {
     const str = date;
     const res = new Date(str);
     return res.toLocaleDateString()
-  };
+  }
+  
   const showYear = (date) => {
     const str = date;
     const res = new Date(str);
     return res.getFullYear()
-  };
+  }
+
+  const getColor = (vote) => {
+    if( vote >= 7 ) {
+      return 'bg-emerald-600'
+    } else if( vote >= 5 ) {
+      return 'bg-orange-600'
+    } else {
+      return 'bg-red-600'
+    }
+  }
 
   const percent = (note)=> {
     var result = note/10*100;
@@ -108,6 +119,7 @@ export default () => {
       return {
         showDate,
         showYear,
+        getColor,
         percent,
         req,
         getMovies,
