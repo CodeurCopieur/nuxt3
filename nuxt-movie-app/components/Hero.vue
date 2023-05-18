@@ -31,13 +31,17 @@
         <SwiperSlide v-for="(movie, i) in movies" :key="i" class="component-app__wrap-slideHero relative">
 
             <div class="absolute z-10 h-full">
-                <div class="w-full xl:w-6/12 md:w-8/12 xl:pl-40 p-0 h-full flex items-center">
+                <div class="max-w-full min-w-full md:min-w-3xl md:max-w-3xl  xl:pl-40 p-0 h-full flex items-center md:mr-auto md:ml-0 mx-auto">
                     <div class="px-8">
-                        <h3 class="text-xs text-lg text-4xl">{{ movie.original_title}}</h3>
-                        <div class="mt-8">
-                            <span>{{ movie.vote_average }}</span>
+                        <h3 class="text-xs text-lg text-4xl font-extrabold-md mb-12">{{ movie.original_title}}</h3>
+                        <div class="precent-bar" >
+                            <span class="precent-per inline-block"
+                                :class="useMoviesApi().getColor(`${parseInt(movie.vote_average)}`)" 
+                                :style="{'width':useMoviesApi().percent(`${parseInt(movie.vote_average)}`)+'%'}">
+                                <span class="percent-tooltip inline-block">{{ useMoviesApi().percent(`${parseInt(movie.vote_average)}`) }}</span>
+                            </span>
                         </div>
-                        <p class="mt-8 text-xs text-lg">{{ movie.overview.substring(0,200)+".." }}</p>
+                        <p class="mt-8 text-xs text-lg leading-normal">{{ movie.overview.substring(0,200)+".." }}</p>
                         <a :href="`movie/${movie.id}`" class="inline-block mt-8 py-2 px-6 bg-[#111827] border-b-4 border-blue-800">
                             <span>PLUS</span>
                         </a>
