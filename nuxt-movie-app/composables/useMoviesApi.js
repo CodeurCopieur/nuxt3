@@ -27,6 +27,7 @@ export default () => {
     }
   }
 
+
   const percent = (note)=> {
     var result = note/10*100;
 
