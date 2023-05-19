@@ -10,5 +10,4 @@
     <Hero :movies="allMovies" type="movie" />
     <Content />
   </div>
-  
 </template>
