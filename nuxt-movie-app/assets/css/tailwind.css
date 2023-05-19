@@ -125,7 +125,6 @@
   padding: 4px 8px;
   z-index: 100;
   border: 1px solid #fff;
-  background: #111827b8;
 }
 
 .precent-per .percent-tooltip::before {
