@@ -61,7 +61,7 @@
                 <span class="precent-per inline-block" 
                   :class="useMoviesApi().getColor(`${parseInt(movie.vote_average)}`)"
                   :style="{'width':useMoviesApi().percent(`${movie.vote_average}`)+'%'}">
-                  <span class="percent-tooltip inline-block">{{ useMoviesApi().percent(`${movie.vote_average}`) }}</span>
+                  <span class="percent-tooltip inline-block" :class="useMoviesApi().getColor(`${parseInt(movie.vote_average)}`)">{{ useMoviesApi().percent(`${movie.vote_average}`) }}</span>
                 </span>
               </div>
         </div>
