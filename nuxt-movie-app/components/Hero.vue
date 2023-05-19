@@ -1,6 +1,9 @@
 <script setup>
-    const { movies } = defineProps(['movies']);
+    const { movies, type } = defineProps(['movies', 'type']);
     const resMovies = ref(movies);
+
+  const getGenres = await useMoviesApi().getGenres(`${type}`);
+  const genres = getGenres.data.genres;
    
     const gallerySwiperParams = {
       spaceBetween: 10,
@@ -16,7 +19,11 @@
       },
       pagination:{ clickable: true, dynamicBullets: true },
     };
-
+    
+  const getTitle = (arrayId) => {
+    const filteredObjects = computed(() => genres.filter(obj => arrayId.includes(obj.id)));
+    return filteredObjects.value
+  };
 </script>
 <template>
     <div class="component-app__wrap-sliderHero relative">
@@ -29,20 +36,29 @@
             :loop="gallerySwiperParams.loop"
             :slide-to-clicked-slide="gallerySwiperParams.slideToClickedSlide" class="h-max w-full component-app__wrap-slider">
         <SwiperSlide v-for="(movie, i) in movies" :key="i" class="component-app__wrap-slideHero relative">
-
             <div class="absolute z-10 h-full">
-                <div class="max-w-full min-w-full md:min-w-3xl md:max-w-3xl  xl:pl-40 p-0 h-full flex items-center md:mr-auto md:ml-0 mx-auto">
+                <div class="w-full md:min-w-3xl md:max-w-3xl  xl:pl-40 p-0 h-full flex items-center md:mr-auto md:ml-0 mx-auto">
                     <div class="px-8">
-                        <h3 class="text-xs text-lg text-4xl font-extrabold-md mb-12">{{ movie.original_title}}</h3>
+                        <h3 class="text-xs text-lg text-4xl font-extrabold-md mb-10">{{ movie.original_title}}</h3>
                         <div class="precent-bar" >
                             <span class="precent-per inline-block"
                                 :class="useMoviesApi().getColor(`${parseInt(movie.vote_average)}`)" 
                                 :style="{'width':useMoviesApi().percent(`${parseInt(movie.vote_average)}`)+'%'}">
-                                <span class="percent-tooltip inline-block">{{ useMoviesApi().percent(`${parseInt(movie.vote_average)}`) }}</span>
+                                <span class="percent-tooltip inline-block" :class="useMoviesApi().getColor(`${parseInt(movie.vote_average)}`)">{{ useMoviesApi().percent(`${parseInt(movie.vote_average)}`) }}</span>
                             </span>
                         </div>
-                        <p class="mt-8 text-xs text-lg leading-normal">{{ movie.overview.substring(0,200)+".." }}</p>
-                        <a :href="`movie/${movie.id}`" class="inline-block mt-8 py-2 px-6 bg-[#111827] border-b-4 border-blue-800">
+                        <ul class="flex my-4">
+                            <li 
+                                v-for="(title, i) in getTitle(movie.genre_ids)" :key="i"
+                                class=" border-b-3 border-blue-800 px-1 pt-1 pb-0"
+                                :class="{ 'mr-1' : i != getTitle(movie.genre_ids).length -1  }"> 
+                                <NuxtLink 
+                                    :to="{query: {type: type , name: title.name.toLowerCase(), page: 1}, path:`/genres/${title.id}`}"
+                                    class="text-base">{{ title.name }}</NuxtLink>
+                            </li>
+                        </ul>
+                        <p class="text-xs text-lg leading-normal">{{ movie.overview.substring(0,200)+".." }}</p>
+                        <a :href="`movie/${movie.id}`" class="inline-block mt-8 py-2 px-6 bg-[#111827] border-b-3 border-blue-800">
                             <span>PLUS</span>
                         </a>
                     </div>
@@ -58,7 +74,6 @@
         </SwiperSlide>
         </swiper>
     </div>
-
 </template>
 
 <style>
