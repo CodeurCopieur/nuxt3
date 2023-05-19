@@ -6,7 +6,7 @@
 
 </script>
 <template>
-    <section class="container max-w-7xl mx-auto py-10 sm:py-16">
+  <section class="py-10 sm:py-16">
     <!-- Post Title -->
     <div class="text-center mb-10">
       <h1 class="text-3xl sm:text-5xl font-bold">
@@ -31,7 +31,7 @@
           :alt="`${data.name}`" />
         </picture>
       </div>
-      <div class="postImage-pst">
+      <div class="container max-w-7xl mx-auto postImage-pst">
         <div class="postImage-cover relative">
           <div class="postImage-cover__aspect-ratio"></div>
           <picture>
@@ -43,7 +43,7 @@
               :alt="`${data.name}`">
           </picture>
         </div>
-        <div class="postImage-pst__info h-full">
+        <div class="postImage-pst__info h-full px-4">
           <div>
             <h4 class="text-xs text-2xl sm:text-3xl font-bold mb-12">{{ data.original_title || data.original_name || data.name }}</h4>
 
@@ -76,5 +76,5 @@
       </div>
     </div>
     <!-- Post Content -->
-    </section>
+  </section>
 </template>
