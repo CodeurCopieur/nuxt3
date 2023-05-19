@@ -23,7 +23,9 @@
                   :class="useMoviesApi().getColor(`${parseInt(item.vote_average)}`)"
                   :style="{'width':useMoviesApi().percent(`${item.vote_average}`)+'%'}"     
                   v-if="useMoviesApi().percent(`${item.vote_average}`) > 1">
-                  <span class="percent-tooltip inline-block">{{ useMoviesApi().percent(`${item.vote_average}`) }}</span>
+                  <span 
+                    class="percent-tooltip inline-block" 
+                    :class="useMoviesApi().getColor(`${parseInt(item.vote_average)}`)">{{ useMoviesApi().percent(`${item.vote_average}`) }}</span>
                 </span>
                 <span v-else class="precent-per inline-block" :style="{'width':0}">
                   <span class="percent-tooltip inline-block">0</span>
