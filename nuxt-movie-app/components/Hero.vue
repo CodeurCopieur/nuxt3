@@ -39,26 +39,29 @@
             <div class="absolute z-10 h-full">
                 <div class="w-full md:min-w-3xl md:max-w-3xl  xl:pl-40 p-0 h-full flex items-center md:mr-auto md:ml-0 mx-auto">
                     <div class="px-8">
-                        <h3 class="text-xs text-lg text-4xl font-extrabold-md mb-10">{{ movie.original_title}}</h3>
-                        <div class="precent-bar" >
-                            <span class="precent-per inline-block"
-                                :class="useMoviesApi().getColor(`${parseInt(movie.vote_average)}`)" 
-                                :style="{'width':useMoviesApi().percent(`${parseInt(movie.vote_average)}`)+'%'}">
-                                <span class="percent-tooltip inline-block" :class="useMoviesApi().getColor(`${parseInt(movie.vote_average)}`)">{{ useMoviesApi().percent(`${parseInt(movie.vote_average)}`) }}</span>
-                            </span>
-                        </div>
-                        <ul class="flex my-4">
+                        <h3 class="text-xs text-lg text-4xl font-extrabold mb-5">{{ movie.original_title}}</h3>
+                        
+                        <ul class="flex flex-nowrap mb-6">
                             <li 
                                 v-for="(title, i) in getTitle(movie.genre_ids)" :key="i"
-                                class=" border-b-4 border-blue-800 px-1 pt-1 pb-0"
+                                class="bg-[#111827] border-b-4 border-blue-800 px-1 py-0"
                                 :class="{ 'mr-1' : i != getTitle(movie.genre_ids).length -1  }"> 
                                 <NuxtLink 
                                     :to="{query: {type: type , name: title.name.toLowerCase(), page: 1}, path:`/genres/${title.id}`}"
                                     class="text-base">{{ title.name }}</NuxtLink>
                             </li>
                         </ul>
-                        <p class="text-xs text-lg leading-normal">{{ movie.overview.substring(0,200)+".." }}</p>
-                        <a :href="`movie/${movie.id}`" class="inline-block mt-8 py-2 px-6 bg-[#111827] border-b-4 border-blue-800">
+                        
+                        <div class="precent-bar mb-6">
+                            <span class="precent-per inline-block"
+                                :class="useMoviesApi().getColor(`${parseInt(movie.vote_average)}`)" 
+                                :style="{'width':useMoviesApi().percent(`${parseInt(movie.vote_average)}`)+'%'}">
+                                <span class="percent-tooltip inline-block" :class="useMoviesApi().getColor(`${parseInt(movie.vote_average)}`)">{{ useMoviesApi().percent(`${parseInt(movie.vote_average)}`) }}</span>
+                            </span>
+                        </div>
+
+                        <p class="text-xs text-lg leading-normal mb-6">{{ movie.overview.substring(0,200)+".." }}</p>
+                        <a :href="`movie/${movie.id}`" class="inline-block py-1 px-6 bg-[#111827] border-b-4 border-blue-800">
                             <span>PLUS</span>
                         </a>
                     </div>
