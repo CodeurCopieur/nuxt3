@@ -1,3 +1,3 @@
 <template>
-    <MovieOrTvDetails :type="`tv`" />
+    <MovieOrTvOrPersonDetails :type="`tv`" />
 </template>
