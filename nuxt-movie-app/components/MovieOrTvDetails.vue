@@ -68,6 +68,8 @@
               </div>
             </div>
 
+            <p class="mt-8 text-sm text-base">{{ data.overview }}</p>
+
           </div>
         </div>
       </div>
