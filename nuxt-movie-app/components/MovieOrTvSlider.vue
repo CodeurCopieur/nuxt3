@@ -1,6 +1,16 @@
 <script setup>
-  const { type, theme } = defineProps(['type', 'theme']);
-  const movies = await useMoviesApi().getMovies(`${type}/${theme}`, 1);
+  const { type, theme, items } = defineProps(['type', 'theme', 'items']);
+  const state = reactive({
+    res: [],
+    dynamicValue : ''
+  })
+
+  if (type === 'movie' || type === 'tv') {
+    state.res = await useMoviesApi().getMovies(`${type}/${theme}`, 1);
+    state.dynamicValue = ''
+  } else {
+    state.res = items
+  }
 
   const thumbnailSwiperParams = {
       spaceBetween: 10,
@@ -49,23 +59,50 @@
     :loop="thumbnailSwiperParams.loop"
     :breakpoints="thumbnailSwiperParams.breakpoints"
     :pagination="thumbnailSwiperParams.pagination">
-    <SwiperSlide v-for="(movie, i) in movies" :key="i" class="h-full shadow-xl mr-0 sm:mr-4 border border-gray-700 hover:bg-gray-900 shadow-custom overflow-hidden">
-      <a :href="`${type}/${movie.id}`">
+    <SwiperSlide v-for="(item, i) in state.res" :key="i" class="h-full shadow-xl mr-0 sm:mr-4 border border-gray-700 hover:bg-gray-900 shadow-custom overflow-hidden">
+      <NuxtLink :to="type ? { path:`/${type}/${item.id}`} : { path:`/person/${item.id}`}">
         <div class="relative" style="padding-top: 160%;">
           <picture>
             <img 
+              v-if="type === 'movie' || type ==='tv'"
               class="absolute inset-0 object-cover w-full h-full"
-              :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`" :alt="`${movie.original_title || movie.original_name}`">
+              :src="`https://image.tmdb.org/t/p/original/${item.poster_path}`" :alt="`${item.original_title || item.original_name}`">
+            <img v-else 
+              class="absolute inset-0 object-cover w-full h-full"
+              :src="`https://image.tmdb.org/t/p/original/${item.profile_path}`" :alt="item.name || item.original_name">
           </picture>
-          <div class="precent-bar mt-8">
+          <div 
+            v-if="type === 'movie' && item.vote_average > 1 || type ==='tv' && item.vote_average > 1"
+            class="precent-bar mt-8" >
                 <span class="precent-per inline-block" 
-                  :class="useMoviesApi().getColor(`${parseInt(movie.vote_average)}`)"
-                  :style="{'width':useMoviesApi().percent(`${movie.vote_average}`)+'%'}">
-                  <span class="percent-tooltip inline-block" :class="useMoviesApi().getColor(`${parseInt(movie.vote_average)}`)">{{ useMoviesApi().percent(`${movie.vote_average}`) }}</span>
+                  :class="useMoviesApi().getColor(`${item.vote_average}`)"
+                  :style="{'width':useMoviesApi().percent(`${parseInt(item.vote_average)}`)+'%'}">
+                  <span class="percent-tooltip inline-block" :class="useMoviesApi().getColor(`${item.vote_average}`)">{{ useMoviesApi().percent(`${item.vote_average}`) }}</span>
                 </span>
-              </div>
+          </div>
+
+          <!-- <div 
+            v-else-if="!type && item.popularity > 1"
+            class="precent-bar">
+              <span 
+                :class="useMoviesApi().getColor(`${parseInt(item.popularity)}`)"
+                :style="{'width':`${parseInt(item.popularity)}`+'%'}"
+                class="precent-per">
+                <span 
+                  :class="useMoviesApi().getColor(`${parseInt(item.popularity)}`)"
+                  class="percent-tooltip inline-block">{{ parseInt(item.popularity) }}</span>
+              </span>
+          </div> -->
+
+          <!-- <div v-else class="precent-bar">
+            <div class="percent-tooltip inline-block text-xs">0</div>
+            <div class="precent-bar">
+              <span class="precent-per inline-block" :style="{'width':0+'%'}"></span>
+            </div>
+          </div> -->
+          
         </div>
-      </a>
+      </NuxtLink>
     </SwiperSlide>
   </swiper>
   
