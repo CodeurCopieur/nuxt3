@@ -22,9 +22,9 @@ export default () => {
       return 'bg-emerald-600'
     } else if( vote >= 5 || vote >= 50 ) {
       return 'bg-orange-600'
-    } else {
-      return 'bg-red-600'
-    }
+    } 
+
+    return 'bg-red-600'
   }
 
 
