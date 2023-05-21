@@ -107,13 +107,23 @@ export default () => {
        return reqDiscover(`${get}`, query, query2);
     }
 
-    // Search Movie or Person or Tv
+    // Search Movie or Person or Tv : https://api.themoviedb.org/3/search/{movie or tv or person }
     const search = async(keyword, value, page) => {
       if(value) {
         const response = await axios.get(`${baseUrl}search/${keyword}?api_key=${apiKey}&query=${value}&page=${page}`)
         const movies = response.data.results;
         const totalResults = response.data.total_results
         return movies
+      }
+    }
+
+    // Cast
+    const credits = async(idMovie) => {
+      if(idMovie) {
+        const response = await axios.get(`${baseUrl}movie/${idMovie}/credits?api_key=${apiKey}`)
+        const infos = response.data
+
+        return infos
       }
     }
 
@@ -127,7 +137,8 @@ export default () => {
         getDetails,
         getGenres,
         getMoviesD,
-        search
+        search,
+        credits
       };
 
   // Series
