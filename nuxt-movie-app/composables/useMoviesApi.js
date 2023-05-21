@@ -18,9 +18,9 @@ export default () => {
   }
 
   const getColor = (vote) => {
-    if( vote >= 7 ) {
+    if( vote >= 7 || vote >= 70) {
       return 'bg-emerald-600'
-    } else if( vote >= 5 ) {
+    } else if( vote >= 5 || vote >= 50 ) {
       return 'bg-orange-600'
     } else {
       return 'bg-red-600'
@@ -70,9 +70,9 @@ export default () => {
 
     // Get Details: https://api.themoviedb.org/3/movie/{movie_id}?api_key={CURRENCY_API_KEY}
 
-    const getDetails = async(getId) => {
+    const getDetails = async(type, getId) => {
       if (getId) {
-        const response = await axios.get(`${baseUrl}${getId}?api_key=${apiKey}`)
+        const response = await axios.get(`${baseUrl}${type}/${getId}?api_key=${apiKey}`)
         return response.data
       }
     }
@@ -112,19 +112,17 @@ export default () => {
       if(value) {
         const response = await axios.get(`${baseUrl}search/${keyword}?api_key=${apiKey}&query=${value}&page=${page}`)
         const movies = response.data.results;
-        const totalResults = response.data.total_results
         return movies
       }
     }
 
     // Cast
-    const credits = async(idMovie) => {
-      if(idMovie) {
-        const response = await axios.get(`${baseUrl}movie/${idMovie}/credits?api_key=${apiKey}`)
+    const credits = async(type, idMovie) => {
+        const response = await axios.get(`${baseUrl}${type}/${idMovie}/credits?api_key=${apiKey}`)
         const infos = response.data
+        const {cast, crew} = infos
 
-        return infos
-      }
+        return  {cast, crew}
     }
 
       return {
