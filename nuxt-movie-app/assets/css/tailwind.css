@@ -165,7 +165,7 @@
 .postImage-pst {
   display: flex;
   flex-direction: column;
-  margin-top: -15rem;
+  margin-top: -10rem;
 }
 
 /* slider */
@@ -195,7 +195,7 @@
 @media screen and (min-width: 768px) {
   
   .postImage-pst {
-    margin-top: -22rem;
+    margin-top: -18rem;
     flex-direction: row;
   }
 
