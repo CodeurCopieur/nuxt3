@@ -54,9 +54,9 @@
                         
                         <div class="precent-bar mb-6">
                             <span class="precent-per inline-block"
-                                :class="useMoviesApi().getColor(`${parseInt(movie.vote_average)}`)" 
-                                :style="{'width':useMoviesApi().percent(`${parseInt(movie.vote_average)}`)+'%'}">
-                                <span class="percent-tooltip inline-block" :class="useMoviesApi().getColor(`${parseInt(movie.vote_average)}`)">{{ useMoviesApi().percent(`${parseInt(movie.vote_average)}`) }}</span>
+                                :class="useMoviesApi().getColor(`${movie.vote_average}`)" 
+                                :style="{'width':useMoviesApi().percent(`${movie.vote_average}`)+'%'}">
+                                <span class="percent-tooltip inline-block" :class="useMoviesApi().getColor(`${movie.vote_average}`)">{{ useMoviesApi().percent(`${movie.vote_average}`) }}</span>
                             </span>
                         </div>
 
