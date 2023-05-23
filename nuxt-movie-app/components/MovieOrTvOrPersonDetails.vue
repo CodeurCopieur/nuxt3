@@ -9,7 +9,9 @@
 <template>
   <section class="pb-10 sm:pb-16">
     <div class="postImage w-full rounded mb-10 relative">
-      <div class="postImage-bck h-[350px] sm:h-[550px] relative overflow-hidden">
+      <div 
+      class="postImage-bck relative overflow-hidden"
+      :class="{'h-[350px] sm:h-[550px]': type === 'person'}">
         <div class="postImage__aspect-ratio"></div>
         <picture>
           <img v-if="type === 'movie' || type ==='tv'"
@@ -28,7 +30,8 @@
                 v-if="type === 'movie' || type ==='tv'"
                 :src="`https://image.tmdb.org/t/p/original${data.poster_path}`"
                 :alt="`${data.original_title || data.original_name}`">
-              <img v-else :src="`https://image.tmdb.org/t/p/original${data.profile_path}`"
+              <img v-else 
+              :src="`https://image.tmdb.org/t/p/original${data.profile_path}`"
                 :alt="`${data.name}`">
             </picture>
         </div>
