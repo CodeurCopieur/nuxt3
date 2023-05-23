@@ -12,7 +12,7 @@
 
   const thumbnailSwiperParams = {
       spaceBetween: 10,
-      loop: true,                         
+      loop: false,                         
       autoplay: {                         
           delay: 8000,
           disableOnInteraction: false  
@@ -21,8 +21,12 @@
       slidesPerView: 5,
       pagination:{ clickable: true, dynamicBullets: true },
       breakpoints: {
+          320: {
+            slidesPerView: 2,
+            spaceBetween: 20
+          },
           480: {
-              slidesPerView: 2,
+              slidesPerView: 3,
               spaceBetween: 24,
               resistanceRatio: 0.85
           },
@@ -81,8 +85,8 @@
                 </span>
           </div>
         </div>
-        <span v-if="!type" class="text-center relative block">
-          <span class="relative text-white text-xs">{{ item.original_name }}</span>
+        <span v-if="!type" class="text-center block">
+          <span class="text-white text-xs">{{ item.original_name }}</span>
         </span>
       </NuxtLink>
     </SwiperSlide>
