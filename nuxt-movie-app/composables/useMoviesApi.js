@@ -117,12 +117,21 @@ export default () => {
     }
 
     // Cast
-    const credits = async(type, idMovie) => {
-        const response = await axios.get(`${baseUrl}${type}/${idMovie}/credits?api_key=${apiKey}`)
+    const credits = async(type, id) => {
+        const response = await axios.get(`${baseUrl}${type}/${id}/credits?api_key=${apiKey}`)
         const infos = response.data
         const {cast, crew} = infos
 
         return  {cast, crew}
+    }
+
+    const recommendations = async(type, id) => {
+      const response = await axios.get(`${baseUrl}${type}/${id}/recommendations?api_key=${apiKey}`)
+      const data = response.data
+
+      const {results} = data
+
+      return results
     }
 
       return {
@@ -136,7 +145,8 @@ export default () => {
         getGenres,
         getMoviesD,
         search,
-        credits
+        credits,
+        recommendations
       };
 
   // Series
