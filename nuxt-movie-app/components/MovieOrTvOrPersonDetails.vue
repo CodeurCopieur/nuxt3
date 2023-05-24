@@ -1,9 +1,22 @@
 <script setup>
   const { type } = defineProps(['type']);
   const {id} = useRoute().params;
-
+  
   const data = await useMoviesApi().getDetails(`${type}`, `${id}`);
-  var infos = await useMoviesApi().credits(`${type}`, `${id}`);
+
+  const state = reactive({
+    infos: [],
+    recommendations: []
+  })
+
+  // const infos = await useMoviesApi().credits(`${type}`, `${id}`);
+  // const recommendations = await useMoviesApi().recommendations(`${type}`, `${id}`);
+
+  if (type === 'movie' || type ==='tv') {
+    state.infos = await useMoviesApi().credits(`${type}`, `${id}`)
+    state.recommendations = await useMoviesApi().recommendations(`${type}`, `${id}`)
+  }
+  
 
 </script>
 <template>
@@ -14,25 +27,22 @@
       :class="{'h-[350px] sm:h-[550px]': type === 'person'}">
         <div class="postImage__aspect-ratio"></div>
         <picture>
-          <img v-if="type === 'movie' || type ==='tv'"
-          :src="`https://image.tmdb.org/t/p/original${data.backdrop_path}`"
-          :alt="`${data.original_title || data.original_name}`" />
-          <img v-else
-          :src="`https://image.tmdb.org/t/p/original${data.profile_path}`"
-          :alt="`${data.name}`" />
+
+          <img v-if="type === 'movie' || type ==='tv' || type === 'person'"
+          :src="`https://image.tmdb.org/t/p/original${data.backdrop_path || data.profile_path}`"
+          :alt="`${data.original_title || data.original_name || data.name}`" />
+
         </picture>
       </div>
-      <div class="container max-w-7xl mx-auto postImage-pst">
+      <div class="container max-w-7xl mx-auto postImage-pst mb-12">
         <div class="postImage-cover relative">
           <div class="postImage-cover__aspect-ratio"></div>
             <picture>
               <img 
-                v-if="type === 'movie' || type ==='tv'"
-                :src="`https://image.tmdb.org/t/p/original${data.poster_path}`"
-                :alt="`${data.original_title || data.original_name}`">
-              <img v-else 
-              :src="`https://image.tmdb.org/t/p/original${data.profile_path}`"
-                :alt="`${data.name}`">
+                v-if="type === 'movie' || type ==='tv' || type === 'person'"
+                :src="`https://image.tmdb.org/t/p/original${data.poster_path || data.profile_path}`"
+                :alt="`${data.original_title || data.original_name || data.name}`">
+
             </picture>
         </div>
         <div class="postImage-pst__info h-full px-4">
@@ -45,7 +55,7 @@
                     class="bg-[#111827] border-b-4 border-blue-800 px-1 py-0"
                     :class="{ 'mr-1' : i != data.genres.length -1  }"> 
                     <NuxtLink 
-                        :to="{query: {type: type , name: title.name.toLowerCase(), page: 1}, path:`/genres/${title.id}`}"
+                        :to="{query: {type: type , name: title.name.toLowerCase().replace(/%/g, ''), page: 1}, path:`/genres/${title.id}`}"
                         class="text-base">{{ title.name }}</NuxtLink>
                 </li>
             </ul>
@@ -72,14 +82,20 @@
 
             <div class="recommended mb-12" v-if="type === 'movie' || type === 'tv'">
               <h2 class="text-white-600 mb-6">
-                <span class="border-b-4 border-blue-800 text-lg">Acteurs</span>
+                <span class="border-b-4 border-blue-800 text-lg">Têtes d'affiche</span>
               </h2>
-                <MovieOrTvSlider :items="infos.cast"/> 
+                <MovieOrTvSlider :type="`person`" :items="state.infos.cast"/> 
             </div>
 
           </div>
         </div>
-      </div>
+      </div> 
+      <div class="recommended container max-w-7xl mx-auto px-4 md:px-8" v-if="type === 'movie' || type === 'tv'">
+          <h2 class="text-white-600 mb-6">
+            <span class="border-b-4 border-blue-800 text-lg">Tu pourrais aussi aimer</span>
+          </h2>
+            <MovieOrTvSlider :type="type" theme="recommendations" :items="state.recommendations"/> 
+            </div>
     </div>
     <!-- Post Content -->
   </section>
