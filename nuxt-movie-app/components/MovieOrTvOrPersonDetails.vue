@@ -9,9 +9,6 @@
     recommendations: []
   })
 
-  // const infos = await useMoviesApi().credits(`${type}`, `${id}`);
-  // const recommendations = await useMoviesApi().recommendations(`${type}`, `${id}`);
-
   if (type === 'movie' || type ==='tv') {
     state.infos = await useMoviesApi().credits(`${type}`, `${id}`)
     state.recommendations = await useMoviesApi().recommendations(`${type}`, `${id}`)
