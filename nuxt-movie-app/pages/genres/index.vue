@@ -16,7 +16,7 @@
         class="before:block before:absolute before:-inset-1 before:-skew-x-2 before:bg-blue-800 relative inline-block block py-2 px-4 bg-gray-300 hover:bg-gray-400"
           v-for="genre in genresMovie"
           :key="genre.id"
-          :to="{query: {type: 'movie', name: genre.name.toLowerCase(), page: 1}, path:`/genres/${genre.id}`}"
+          :to="{query: {type: 'movie', name: genre.name.toLowerCase().replace(/%/g, ''), page: 1}, path:`/genres/${genre.id}`}"
           >
           <span class="relative text-white">#{{ genre.name }}</span>
           </NuxtLink>
@@ -31,7 +31,7 @@
         class="before:block before:absolute before:-inset-1 before:-skew-x-2 before:bg-blue-800 relative inline-block block py-2 px-4 bg-gray-300 hover:bg-gray-400"
           v-for="genre in genresTv"
           :key="genre.id"
-          :to="{query: {type: 'tv', name: genre.name.toLowerCase(), page: 1}, path:`/genres/${genre.id}`}"
+          :to="{query: {type: 'tv', name: genre.name.toLowerCase().replace(/%/g, ''), page: 1}, path:`/genres/${genre.id}`}"
           >
           <span class="relative text-white">#{{ genre.name }}</span>
           </NuxtLink>
