@@ -71,7 +71,7 @@ export default () => {
     // Get Details: https://api.themoviedb.org/3/movie/{movie_id}?api_key={CURRENCY_API_KEY}
 
     const getDetails = async(type, getId) => {
-      if (getId) {
+      if (type && getId) {
         const response = await axios.get(`${baseUrl}${type}/${getId}?api_key=${apiKey}`)
         return response.data
       }
