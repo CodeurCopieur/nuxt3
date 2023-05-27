@@ -18,31 +18,30 @@
 
               <span class="mt-8 text-xs text-lg inline-block">{{ useMoviesApi().showYear(`${item.release_date}`) || useMoviesApi().showYear(`${item.first_air_date}`) || item.known_for_department }}</span><br>
 
-              <div class="precent-bar mt-10" v-if="type === 'movie' && item.popularity > 1 || type === 'tv' && item.popularity > 1 ">
-                <span class="precent-per inline-block" 
-                  :class="useMoviesApi().getColor(`${item.vote_average}`)"
-                  :style="{'width':useMoviesApi().percent(`${item.vote_average}`)+'%'}">
-                  <span 
-                    class="percent-tooltip inline-block" 
-                    :class="useMoviesApi().getColor(`${item.vote_average}`)">{{ useMoviesApi().percent(`${item.vote_average}`) }}</span>
-                </span>
-              </div>
-
-              <div class="precent-bar mt-10" v-else-if="type === 'person' && item.popularity > 1">
+              <div 
+                 v-if="type !== 'person' && item.vote_average >= 1" 
+                 class="precent-bar mt-6">
                 <span 
-                  :class="useMoviesApi().getColor(`${parseInt(item.popularity)}`)"
-                  :style="{'width':`${parseInt(item.popularity)}`+'%'}"
-                  class="precent-per inline-block" >
-                  <span class="percent-tooltip inline-block">{{ parseInt(item.popularity) }} lol</span>
+                  :class="useMoviesApi().getColor(`${item.vote_average}`)"
+                  :style="{'width':useMoviesApi().percent(`${item.vote_average}`)+'%'}"
+                   class="precent-per inline-block">
+                  <span
+                    :class="useMoviesApi().getColor(`${item.vote_average}`)" 
+                    class="percent-tooltip inline-block">{{ useMoviesApi().percent(`${item.vote_average}`) }}</span>
                 </span>
               </div>
-
-              <div v-else class="mb-6">
-                <div class="percent-tooltip inline-block text-xs">0</div>
-                  <div class="precent-bar">
-                    <span class="precent-per inline-block" :style="{'width':0+'%'}"></span>
-                  </div>
+              <div 
+                v-else-if="type !== 'person' && item.vote_average === 0"
+                class="precent-bar mt-6">
+                <span class="precent-per nr inline-block bg-red-600" style="width:0%;"><span class="percent-tooltip inline-block bg-red-600 nr" style="right: -25px; top: -12px;">NR</span></span>
               </div>
+              <!-- <div 
+                  v-else-if="item.popularity === 0" 
+                  class="precent-bar mt-6">
+                  <span class="precent-per nr inline-block bg-red-600" style="width:0%;">
+                    <span class="percent-tooltip inline-block bg-red-600 nr" style="right: -25px; top: -12px;">NR lol</span>
+                  </span>
+              </div> -->
 
             </div>
         </div>
