@@ -70,12 +70,8 @@
         <div class="relative" style="padding-top: 160%;">
           <picture>
             <img 
-              v-if="type === 'movie' || type ==='tv' || type === 'person'"
               class="absolute inset-0 object-cover w-full h-full"
               :src="`https://image.tmdb.org/t/p/original/${item.poster_path || item.profile_path}`" :alt="`${item.original_title || item.original_name || item.name}`">
-            <!-- <img v-else-if="type === 'person'"
-              class="absolute inset-0 object-cover w-full h-full"
-              :src="`https://image.tmdb.org/t/p/original/${item.profile_path}`" :alt="item.name || item.original_name" :title="item.name || item.original_name">lol -->
           </picture>
           <div 
             v-if="type === 'movie' && item.vote_average > 1 || type ==='tv' && item.vote_average > 1"
