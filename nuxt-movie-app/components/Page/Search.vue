@@ -49,12 +49,9 @@ async function handleBlur(event) {
               @change="handleOptionChange"  />
         {{ option.label }}</label>
       </li>
-
       <form class="mt-6">
         <input 
-
           @keypress.enter="handleBlur"
-          @input="handleBlur"
           type="text" class="w-full border-b-4 border-blue-800 outline-none p-2 text-blue-800 text-center" style="line-height: 1.75rem;" 
           placeholder="Que cherchez-vous ?" 
           v-model="state.search" />
@@ -63,7 +60,7 @@ async function handleBlur(event) {
 
     <div 
       v-if="state.allItems.length"
-      class="container max-w-7xl max-w-2xl mx-auto px-4 py-8 lg:max-w-7xl grid grid-cols-1 gap-y-10 gap-x-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+      class="container max-w-7xl max-w-2xl mx-auto px-4 py-8 lg:max-w-7xl grid grid-cols-2 gap-y-10 gap-x-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
 
       <MovieOrTvOrPersonCard :items="state.allItems" :type="state.picked" />
 
