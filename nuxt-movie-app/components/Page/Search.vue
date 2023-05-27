@@ -45,7 +45,6 @@ async function handleBlur(event) {
           <input type="radio" id="movie" 
               :value="option.value" 
               v-model="state.picked" 
-              
               @change="handleOptionChange"  />
         {{ option.label }}</label>
       </li>
