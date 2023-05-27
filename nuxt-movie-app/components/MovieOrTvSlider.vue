@@ -82,8 +82,11 @@
                   <span class="percent-tooltip inline-block" :class="useMoviesApi().getColor(`${item.vote_average}`)">{{ useMoviesApi().percent(`${item.vote_average}`) }}</span>
                 </span>
           </div>
+          <div v-else-if="type === 'movie' && item.vote_average === 0 || type ==='tv' && item.vote_average === 0"  class="precent-bar mt-8">
+            <span class="precent-per nr inline-block bg-red-600" style="width:0%;"><span class="percent-tooltip inline-block bg-red-600 nr" style="right: -25px; top: -12px;">NR</span></span>
+            </div>
         </div>
-        <span v-if="type === 'person'" class="text-center block">
+        <span class="text-center block">
           <span class="text-white text-xs">{{ item.original_name || item.original_title }}</span>
         </span>
       </NuxtLink>
