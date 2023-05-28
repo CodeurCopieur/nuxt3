@@ -27,6 +27,12 @@ export default () => {
     return 'bg-red-600'
   }
 
+  function getDate(date) {
+    const str = date;
+    const res = new Date(str);
+    return res.toLocaleDateString()
+  }
+
 
   const percent = (note)=> {
     var result = note/10*100;
@@ -134,9 +140,18 @@ export default () => {
       return results
     }
 
+    const personCredits = async(type, id) => {
+      const response = await axios.get(`${baseUrl}person/${id}/${type}_credits?api_key=${apiKey}`)
+      const data = response.data
+      const {cast, crew} = data
+
+      return  data
+    }
+
       return {
         showDate,
         showYear,
+        getDate,
         getColor,
         percent,
         req,
@@ -146,7 +161,8 @@ export default () => {
         getMoviesD,
         search,
         credits,
-        recommendations
+        recommendations,
+        personCredits
       };
 
   // Series
