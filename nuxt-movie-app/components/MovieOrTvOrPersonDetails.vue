@@ -39,7 +39,7 @@
         </picture>
       </div>
       <div class="container max-w-7xl mx-auto postImage-pst mb-12">
-        <div class="postImage-cover relative" style="height: 600px">
+        <div class="postImage-cover relative">
           <div class="postImage-cover__aspect-ratio"></div>
             <picture>
               <img 
@@ -52,7 +52,7 @@
         <div class="postImage-pst__info h-full px-4">
           <div>
             <h4 class="text-xs text-2xl sm:text-3xl font-bold mb-2">{{ data.title || data.original_name || data.name }}</h4>
-            <p class="text-xs mb-6" v-if="data.release_date"> {{ useMoviesApi().getDate(data.release_date) }}</p>
+            <p class="text-xs mb-6" v-if="data.release_date || data.first_air_date"> {{ useMoviesApi().getDate(data.release_date || data.first_air_date) }}</p>
 
             <ul class="flex flex-nowrap mb-6" v-if="type === 'movie' || type === 'tv'">
                 <li 
@@ -100,7 +100,8 @@
                 </dd>
               </div>
 
-              <div class="flex items-center pl-2 border-l-2" v-if="data.place_of_birth">
+              <div class="flex items-center pl-2"
+                :class="{'border-l-2' : data.place_of_birth}" v-if="data.place_of_birth">
                 <dt>
                   <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1 text-slate-400 dark:text-slate-500" aria-hidden="true">
                     <path d="M18 11.034C18 14.897 12 19 12 19s-6-4.103-6-7.966C6 7.655 8.819 5 12 5s6 2.655 6 6.034Z" />
@@ -114,23 +115,10 @@
             </div>
             <p class="mt-8 text-sm text-base mb-6">{{ data.overview || data.biography}}</p>
 
-            <div class="recommended mb-12" v-if="type === 'person'">
-              <div>
-                <h2 class="text-white-600 mb-6">
-                  <span class="border-b-4 border-blue-800 text-lg">Films</span>
-                </h2>
-                <MovieOrTvSlider :type="'movie'" :items="state.personCreditsMovies.cast"/> 
-              </div>
-              <div>
-                <h2 class="text-white-600 mb-6">
-                  <span class="border-b-4 border-blue-800 text-lg">Series</span>
-                </h2>
-                <MovieOrTvSlider :type="'tv'" :items="state.personCreditsTv.cast"/> 
-              </div>
-            </div>
+
 
             <div class="recommended mb-12" v-if="type === 'movie' || type === 'tv'">
-              <h2 class="text-white-600 mb-6">
+              <h2 class="text-white-600 mb-1">
                 <span class="border-b-4 border-blue-800 text-lg">Têtes d'affiche</span>
               </h2>
                 <MovieOrTvSlider :type="`person`" :items="state.infos.cast"/> 
@@ -139,12 +127,28 @@
           </div>
         </div>
       </div> 
-      <div class="recommended container max-w-7xl mx-auto px-4 md:px-8" v-if="type === 'movie' || type === 'tv'">
-          <h2 class="text-white-600 mb-6">
-            <span class="border-b-4 border-blue-800 text-lg">Tu pourrais aussi aimer</span>
+
+      <div class="recommended container max-w-7xl mx-auto px-4 md:px-8" v-if="type === 'person'">
+        <div>
+          <h2 class="text-white-600 mb-1">
+            <span class="border-b-4 border-blue-800 text-lg">Films</span>
           </h2>
-            <MovieOrTvSlider :type="type" theme="recommendations" :items="state.recommendations"/> 
-            </div>
+          <MovieOrTvSlider :type="'movie'" :items="state.personCreditsMovies.cast"/> 
+        </div>
+        <div>
+          <h2 class="text-white-600 mb-1">
+            <span class="border-b-4 border-blue-800 text-lg">Series</span>
+          </h2>
+          <MovieOrTvSlider :type="'tv'" :items="state.personCreditsTv.cast"/> 
+        </div>
+      </div>
+
+      <div class="recommended container max-w-7xl mx-auto px-4 md:px-8" v-if="type === 'movie' && state.recommendations.length || type === 'tv' && state.recommendations.length">
+        <h2 class="text-white-600 mb-1">
+          <span class="border-b-4 border-blue-800 text-lg">Tu pourrais aussi aimer</span>
+        </h2>
+          <MovieOrTvSlider :type="type" theme="recommendations" :items="state.recommendations"/> 
+      </div>
     </div>
     <!-- Post Content -->
   </section>
