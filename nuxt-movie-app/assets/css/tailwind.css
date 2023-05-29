@@ -144,24 +144,7 @@ background-image: linear-gradient(to top, #111827, rgba(0, 0, 0, 0));
   color: #fff;
   padding: 2px 4px;
   z-index: 100;
-  /* border: 1px solid #fff; */
 }
-
-/* .precent-per .percent-tooltip::before {
-  content: '';
-  position: absolute;
-  right: 5px;
-  top: 0px;
-  width: 5px;
-  height: 5px;
-  z-index: 10;
-  background-color: #000;
-  transform: translateX(-50%) rotate(45deg);
-} */
-
-/* .precent-per .nr.percent-tooltip::before {
-  content: none;
-} */
 
 .postImage-bck::before {
   content: "";
@@ -215,6 +198,67 @@ background-image: linear-gradient(to top, #111827, rgba(0, 0, 0, 0));
   width: 2rem;
   text-align: center;
 }
+
+#modal1 {
+  width:100%;
+  max-width:100%
+ }
+
+ .modal {
+  background: rgb(17,24,39,.75);
+  animation: fadeIn .3s both;
+}
+
+.modal[aria-modal="false"] {
+  animation-name: fadeOut;
+  left: -100rem;
+}
+
+.modal[aria-hidden=true] {
+  animation-name:fadeIn;
+  left:0
+ }
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+   opacity:0;
+   visibility:hidden;
+   z-index:0
+  }
+  to {
+   opacity:1;
+   visibility:visible;
+   z-index:5000
+  }
+ }
+ @keyframes fadeOut {
+  from {
+   opacity:1;
+   visibility:visible
+  }
+  to {
+   opacity:0;
+   visibility:hidden
+  }
+ }
+ @keyframes slideRight {
+  from {
+   transform:translateX(-3.125rem)
+  }
+  to {
+   transform:translateX(0rem)
+  }
+ }
+ @keyframes slideLeft {
+  from {
+   transform:translateX(0rem)
+  }
+  to {
+   transform:translateX(-3.125rem)
+  }
+ }
+/* Animation */
 
 @media screen and (min-width: 768px) {
   
