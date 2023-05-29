@@ -5,16 +5,19 @@
   const data = await useMoviesApi().getDetails(`${type}`, `${id}`);
 
   const state = reactive({
+    isOpen: false,
     infos: [],
     recommendations: [],
     personCreditsMovies: [],
-    personCreditsTv: []
+    personCreditsTv: [],
+    videos: []
   })
   
 
   if (type === 'movie' || type ==='tv') {
     state.infos = await useMoviesApi().credits(`${type}`, `${id}`)
     state.recommendations = await useMoviesApi().recommendations(`${type}`, `${id}`)
+    state.videos = await  useMoviesApi().videos(`${type}`, `${id}`)
 
   } else if (type === 'person') {
     state.personCreditsMovies = await useMoviesApi().personCredits('movie', `${id}`)
@@ -78,13 +81,13 @@
               </span>
             </div>
 
-            <div v-else-if="type === 'movie' && data.vote_average  === 0 || type ==='tv' && data.vote_average === 0" class="mb-6">
-              <div class="percent-tooltip inline-block text-xs">0</div>
-              <div class="precent-bar">
-                <span class="precent-per inline-block" :style="{'width':0+'%'}"></span>
-              </div>
+            <div v-else-if="type === 'movie' && item.vote_average === 0 || type ==='tv' && item.vote_average === 0" 
+            class="precent-bar mt-8">
+              <span class="precent-per nr inline-block bg-red-600" style="width:0%;">
+                  <span class="percent-tooltip inline-block bg-red-600 nr" style="right: -25px; top: -12px;">NR</span>
+              </span>
             </div>
-
+          <!-- Person -->
             <div class="text-sm text-base mb-6 flex items-center" v-if="type === 'person'">
               <div class="flex items-center pr-2" v-if="data.birthday">
                 <dt>
@@ -115,7 +118,20 @@
             </div>
             <p class="mt-8 text-sm text-base mb-6">{{ data.overview || data.biography}}</p>
 
+            <button 
+              v-if="type === 'movie' || type === 'tv'"
+              @click="state.isOpen = !state.isOpen" class="inline-block py-1 px-6 bg-[#111827] border-b-4 border-blue-800 mb-8 cursor-pointer">
+              <span>Regarder</span>
+            </button>
 
+            <teleport to="body">
+              <aside id="modal1" class="modal fixed top-0 left-0 w-full h-full" role="dialog" aria-labelledby="popinquizz" :aria-modal="state.isOpen" v-if="state.isOpen">
+                <modal-content 
+                  @close="isOpen = false"
+                  :items="state.videos"
+                   />
+              </aside>
+            </teleport>
 
             <div class="recommended mb-12" v-if="type === 'movie' || type === 'tv'">
               <h2 class="text-white-600 mb-1">
