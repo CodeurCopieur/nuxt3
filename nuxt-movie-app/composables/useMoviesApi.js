@@ -148,6 +148,13 @@ export default () => {
       return  data
     }
 
+    const videos = async(type, id) => {
+      const response = await axios.get(`${baseUrl}${type}/${id}/videos?api_key=${apiKey}`)
+      const data = response.data
+
+      return  data
+    }
+
       return {
         showDate,
         showYear,
@@ -162,7 +169,8 @@ export default () => {
         search,
         credits,
         recommendations,
-        personCredits
+        personCredits,
+        videos
       };
 
   // Series
