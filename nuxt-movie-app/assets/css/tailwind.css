@@ -163,7 +163,7 @@ background-image: linear-gradient(to top, #111827, rgba(0, 0, 0, 0));
 }
 
 .postImage-cover__aspect-ratio {
-  padding-top: 160%;
+  padding-top: 130%;
 }
  .postImage-pst__info, .postImage-cover {
   z-index: 1000;
@@ -199,6 +199,8 @@ background-image: linear-gradient(to top, #111827, rgba(0, 0, 0, 0));
   text-align: center;
 }
 
+/* Modal */
+
 #modal1 {
   width:100%;
   max-width:100%
@@ -217,6 +219,15 @@ background-image: linear-gradient(to top, #111827, rgba(0, 0, 0, 0));
 .modal[aria-hidden=true] {
   animation-name:fadeIn;
   left:0
+ }
+
+ .modal-wrapper {
+  animation: slideRight 1s both;
+}
+
+
+.container_story {
+  box-shadow:rgba(255,255,255,.22) 0 2px 4px 0
  }
 
 /* Animation */
