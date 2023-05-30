@@ -36,6 +36,7 @@
         <picture>
 
           <img v-if="type === 'movie' || type ==='tv' || type === 'person'"
+          class="h-auto"
           :src="`https://image.tmdb.org/t/p/original${data.backdrop_path || data.profile_path}`"
           :alt="`${data.original_title || data.original_name || data.name}`" />
 
@@ -104,7 +105,7 @@
               </div>
 
               <div class="flex items-center pl-2"
-                :class="{'border-l-2' : data.place_of_birth}" v-if="data.place_of_birth">
+                :class="{'border-l-2' : data.birthday}" v-if="data.place_of_birth">
                 <dt>
                   <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1 text-slate-400 dark:text-slate-500" aria-hidden="true">
                     <path d="M18 11.034C18 14.897 12 19 12 19s-6-4.103-6-7.966C6 7.655 8.819 5 12 5s6 2.655 6 6.034Z" />
@@ -125,9 +126,9 @@
             </button>
 
             <teleport to="body">
-              <aside id="modal1" class="modal fixed top-0 left-0 w-full h-full" role="dialog" aria-labelledby="popinquizz" :aria-modal="state.isOpen" v-if="state.isOpen">
+              <aside id="modal1" class="modal fixed top-0 left-0 w-full h-full overflow-hidden" role="dialog" aria-labelledby="popinquizz" :aria-modal="state.isOpen" v-if="state.isOpen">
                 <modal-content 
-                  @close="isOpen = false"
+                  @close="state.isOpen = false"
                   :items="state.videos"
                    />
               </aside>
