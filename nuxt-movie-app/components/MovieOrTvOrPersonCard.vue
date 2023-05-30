@@ -19,7 +19,7 @@
               <span class="mt-8 text-xs text-lg inline-block">{{ useMoviesApi().showYear(`${item.release_date}`) || useMoviesApi().showYear(`${item.first_air_date}`) || item.known_for_department }}</span><br>
 
               <div 
-                 v-if="type !== 'person' && item.vote_average >= 1" 
+                 v-if="type !== 'person' && item.vote_average >= 1 || type !== 'person' && item.vote_average >= 1" 
                  class="precent-bar mt-6">
                 <span 
                   :class="useMoviesApi().getColor(`${item.vote_average}`)"
@@ -31,17 +31,12 @@
                 </span>
               </div>
               <div 
-                v-else-if="type !== 'person' && item.vote_average === 0"
+                v-else-if="type !== 'person' && item.vote_average === 0 || type !== 'person' && item.vote_average === 0"
                 class="precent-bar mt-6">
-                <span class="precent-per nr inline-block bg-red-600" style="width:0%;"><span class="percent-tooltip inline-block bg-red-600 nr" style="right: -25px; top: -12px;">NR</span></span>
-              </div>
-              <!-- <div 
-                  v-else-if="item.popularity === 0" 
-                  class="precent-bar mt-6">
                   <span class="precent-per nr inline-block bg-red-600" style="width:0%;">
-                    <span class="percent-tooltip inline-block bg-red-600 nr" style="right: -25px; top: -12px;">NR lol</span>
-                  </span>
-              </div> -->
+                    <span class="percent-tooltip inline-block bg-red-600 nr" style="right: -25px; top: -12px;">NR</span>
+                    </span>
+              </div>
 
             </div>
         </div>
