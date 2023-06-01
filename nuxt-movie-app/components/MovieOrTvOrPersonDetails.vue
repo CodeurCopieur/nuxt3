@@ -48,6 +48,7 @@
             <picture>
               <img 
                 v-if="type === 'movie' || type ==='tv' || type === 'person'"
+                class="h-auto"
                 :src="`https://image.tmdb.org/t/p/original${data.poster_path || data.profile_path}`"
                 :alt="`${data.original_title || data.original_name || data.name}`">
 
@@ -120,7 +121,7 @@
             <p class="mt-8 text-sm text-base mb-6">{{ data.overview || data.biography}}</p>
 
             <button 
-              v-if="type === 'movie' || type === 'tv'"
+              v-if="type === 'movie' && state.videos || type === 'tv' && state.videos"
               @click="state.isOpen = !state.isOpen" class="inline-block py-1 px-6 bg-[#111827] border-b-4 border-blue-800 mb-8 cursor-pointer">
               <span>Regarder</span>
             </button>
@@ -129,7 +130,8 @@
               <aside id="modal1" class="modal fixed top-0 left-0 w-full h-full overflow-hidden" role="dialog" aria-labelledby="popinquizz" :aria-modal="state.isOpen" v-if="state.isOpen">
                 <modal-content 
                   @close="state.isOpen = false"
-                  :items="state.videos"
+                  :items="state.videos.results"
+                  :type="type"
                    />
               </aside>
             </teleport>
@@ -145,14 +147,14 @@
         </div>
       </div> 
 
-      <div class="recommended container max-w-7xl mx-auto px-4 md:px-8" v-if="type === 'person'">
-        <div>
+      <div class="recommended container max-w-7xl mx-auto px-4 md:px-8">
+        <div v-if="type === 'person' && state.personCreditsMovies">
           <h2 class="text-white-600 mb-1">
             <span class="border-b-4 border-blue-800 text-lg">Films</span>
           </h2>
           <MovieOrTvSlider :type="'movie'" :items="state.personCreditsMovies.cast"/> 
         </div>
-        <div>
+        <div v-if="type === 'person' && state.personCreditsTv">
           <h2 class="text-white-600 mb-1">
             <span class="border-b-4 border-blue-800 text-lg">Series</span>
           </h2>
