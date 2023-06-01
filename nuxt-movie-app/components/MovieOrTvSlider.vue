@@ -1,5 +1,5 @@
 <script setup>
-  const { type, theme, items } = defineProps(['type', 'theme', 'items']);
+  const { type, secondType, theme, items } = defineProps(['type', 'secondType', 'theme', 'items']);
   const state = reactive({
     res: []
   })
@@ -11,6 +11,15 @@
   } else {
     state.res = items
   }
+
+if (type === 'videos') {
+  const filter = items.filter((item) => {
+    if (item.site === 'YouTube' && item.type === 'Trailer'  ) {
+      return item
+    }
+  })
+  state.res = filter
+}
 
   const thumbnailSwiperParams = {
       spaceBetween: 10,
@@ -49,9 +58,18 @@
           }
       }
   };
+
+  const thumbnailSwiperParams2 ={
+    loop: false,
+    slidesPerView: 1,
+    spaceBetween: 10,
+    resistanceRatio : 0,
+    pagination:{ clickable: true, dynamicBullets: true }
+  };
 </script>
 
-<template v-if="type === 'movie' || type === 'tv' || type === 'person'">
+<template>
+  <template  v-if="type === 'movie' && state.res || type === 'tv' && state.res || type === 'person' && state.res ">
 
   <swiper 
     class="swiperList"
@@ -64,10 +82,12 @@
     :breakpoints="thumbnailSwiperParams.breakpoints"
     :pagination="thumbnailSwiperParams.pagination">
     <SwiperSlide v-for="(item, i) in state.res" :key="i" 
-    class="h-full shadow-xl mr-0 sm:mr-4 border border-gray-700 hover:bg-gray-900 shadow-custom"
+      class="h-full shadow-xl mr-0 sm:mr-4 border border-gray-700 hover:bg-gray-900 shadow-custom"
     :class="{'overflow-hidden': type === 'movie' || type === 'tv' }">
-      <NuxtLink :to="type === 'movie' || type === 'tv' || type === 'person' ? { path:`/${type}/${item.id}`} : {}" class="relative" :class="{'person' : type === 'person'}">
-        <div class="relative" style="padding-top: 160%;">
+      <NuxtLink 
+        :to="type === 'movie' || type === 'tv' || type === 'person' ? { path:`/${type}/${item.id}`} : {}" 
+        class="relative">
+        <div class="relative" style="padding-top: 130%;">
           <picture>
             <img 
               class="absolute inset-0 object-cover w-full h-full"
@@ -83,7 +103,7 @@
                 </span>
           </div>
           <div v-else-if="type === 'movie' && item.vote_average === 0 || type ==='tv' && item.vote_average === 0"  
-            class="precent-bar mt-8">
+            class="precent-bar mt-6">
               <span class="precent-per nr inline-block bg-red-600" style="width:0%;">
                 <span class="percent-tooltip inline-block bg-red-600 nr" style="right: -25px; top: -12px;">NR</span>
               </span>
@@ -96,5 +116,23 @@
     </SwiperSlide>
   </swiper>
   
-  
+  </template>
+
+
+  <template v-else-if="type === 'videos' && state.res">
+    <swiper 
+      class="swiperList"
+      ref="thumbnailSwiperParams2"
+      :modules="[SwiperPagination]"
+      :pagination="thumbnailSwiperParams2.pagination">
+      <SwiperSlide 
+        v-for="(item, i) in state.res" :key="i" 
+        class="shadow-xl shadow-custom"
+        :class="{'overflow-hidden': type === 'videos' }">
+          <div class="videos-trailer">
+            <iframe class="iframe-cont" width="560" height="315" :src="`https://www.youtube.com/embed/${item.key}`" :title="`${item.name}`" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+      </SwiperSlide>
+    </swiper>
+  </template>
 </template>
