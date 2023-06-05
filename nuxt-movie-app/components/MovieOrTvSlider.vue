@@ -1,5 +1,5 @@
 <script setup>
-  const { type, secondType, theme, items } = defineProps(['type', 'secondType', 'theme', 'items']);
+  const { type, theme, items } = defineProps(['type', 'theme', 'items']);
   const state = reactive({
     res: []
   })
