@@ -188,7 +188,6 @@ background-image: linear-gradient(to top, #111827, rgba(0, 0, 0, 0));
 }
 
 .current {
-  /* border: .3125rem solid #1E40AF; */
   font-size: 1.25rem;
   font-weight: 600;
 }
@@ -225,10 +224,6 @@ background-image: linear-gradient(to top, #111827, rgba(0, 0, 0, 0));
   animation: slideRight 1s both;
 }
 
-
-.container_story {
-  box-shadow:rgba(255,255,255,.22) 0 2px 4px 0
- }
 
 .videos-trailer {
   overflow:auto;
